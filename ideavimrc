@@ -1,0 +1,356 @@
+let mapleader=' '
+
+
+" ============= PLUGINS =============
+
+set surround
+set multiple-cursors
+set commentary
+set argtextobj
+set ReplaceWithRegister
+set exchange
+set highlightedyank
+set matchit
+
+" highlightedyank
+let g:highlightedyank_highlight_duration = '300'
+let g:highlightedyank_highlight_color = 'rgb(131, 148, 150, 120)'
+
+" surround
+nmap S ysiW
+
+" ReplaceWithRegister
+nmap ö <PLug>ReplaceWithRegisterOperator
+nmap Ö <PLug>ReplaceWithRegisterOperator$
+nmap öö <PLug>ReplaceWithRegisterLine
+xmap ö <PLug>ReplaceWithRegisterVisual
+
+" Text objects for delimiters.
+nnoremap ci/ T/ct/
+nnoremap ca/ F/ct/
+nnoremap ci, T,ct,
+nnoremap ca, F,ct,
+nnoremap ci. T.ct.
+nnoremap ca. F.ct.
+nnoremap ci_ T_ct_
+nnoremap ca_ F_ct_
+nnoremap ci- T-ct-
+nnoremap ca- F-ct-
+nnoremap ci% T%ct%
+nnoremap ca% F%ct%
+nnoremap ci= T=ct=
+nnoremap ca= F=ct=
+nnoremap ci? T?ct?
+nnoremap ca? F?ct?
+nnoremap ci! T!ct!
+nnoremap ca! F!ct!
+nnoremap ci& T&ct&
+nnoremap ca& F&ct&
+nnoremap di/ T/dt/
+nnoremap da/ F/dt/
+nnoremap di, T,dt,
+nnoremap da, F,dt,
+nnoremap di. T.dt.
+nnoremap da. F.dt.
+nnoremap di_ T_dt_
+nnoremap da_ F_dt_
+nnoremap di- T-dt-
+nnoremap da- F-dt-
+nnoremap di% T%dt%
+nnoremap da% F%dt%
+nnoremap di= T=dt=
+nnoremap da= F=dt=
+nnoremap di? T?dt?
+nnoremap da? F?dt?
+nnoremap di! T!dt!
+nnoremap da! F!dt!
+nnoremap di& T&dt&
+nnoremap da& F&dt&
+nnoremap vi/ T/vt/
+nnoremap va/ F/vt/
+nnoremap vi, T,vt,
+nnoremap va, F,vt,
+nnoremap vi. T.vt.
+nnoremap va. F.vt.
+nnoremap vi_ T_vt_
+nnoremap va_ F_vt_
+nnoremap vi- T-vt-
+nnoremap va- F-vt-
+nnoremap vi% T%vt%
+nnoremap va% F%vt%
+nnoremap vi= T=vt=
+nnoremap va= F=vt=
+nnoremap vi? T?vt?
+nnoremap va? F?vt?
+nnoremap vi! T!vt!
+nnoremap va! F!vt!
+nnoremap vi& T&vt&
+nnoremap va& F&vt&
+nnoremap yi/ T/yt/
+nnoremap ya/ F/yt/
+nnoremap yi, T,yt,
+nnoremap ya, F,yt,
+nnoremap yi. T.yt.
+nnoremap ya. F.yt.
+nnoremap yi_ T_yt_
+nnoremap ya_ F_yt_
+nnoremap yi- T-yt-
+nnoremap ya- F-yt-
+nnoremap yi% T%yt%
+nnoremap ya% F%yt%
+nnoremap yi= T=yt=
+nnoremap ya= F=yt=
+nnoremap yi? T?yt?
+nnoremap ya? F?yt?
+nnoremap yi! T!yt!
+nnoremap ya! F!yt!
+nnoremap yi& T&yt&
+nnoremap ya& F&yt&
+
+
+" ============= GENERAL =============
+
+" Search settings.
+set incsearch hlsearch ignorecase smartcase gdefault
+
+set ideajoin                  " use the IDE's join/J behavior
+set selectmode=ideaselection  " use select mode only when IDE sets a selection
+set timeoutlen=1000           " timeout for keymappings
+set clipboard=unnamed,ideaput " use system clipboard with idea's pasting logic
+set scrolloff=1               " pad scrolling with one line
+set showmode                  " show current mode in statusbar
+set showcmd                   " show partial command in statusbar
+set visualbell                " removes errorbells
+
+
+" ============= MAPPINGS =============
+
+" Move between splits.
+nnoremap <A-L> <C-W>l
+nnoremap <A-H> <C-W>h
+nnoremap <A-J> <C-W>j
+nnoremap <A-K> <C-W>k
+
+nmap <C-W>= <Action>(MaximizeEditorInSplit)
+
+" Makes these easier to use.
+noremap , :
+noremap : ;
+noremap ; ,
+
+nnoremap + $
+xnoremap + $
+
+" Make Y behave the same way as D and C.
+nnoremap Y y$
+
+" Makes v and V more consistent with other commands.
+nnoremap vv V
+nnoremap V <C-V>$
+
+" Cleaner to use when cursor doesn't move.
+nnoremap J Jh
+
+" Make K the logical opposite of J.
+nnoremap K a<CR><Esc>k$
+
+" Change enter behavior.
+nnoremap <CR> mqo<Esc>`q
+" FIXME: This doesn't keep cursor on the same place.
+nnoremap <S-Enter> mqO<Esc>`q
+
+" Better way to indent.
+nnoremap <BS> <<
+nnoremap <TAB> >>
+xnoremap <BS> <gv
+xnoremap <TAB> >gv
+
+" Persistent visuals.
+xnoremap > >gv
+xnoremap < <gv
+xnoremap <C-X> <C-X>gv
+xnoremap <C-A> <C-A>gv
+
+" Q plays back q macro.
+nnoremap Q @q
+
+" Repeat the last substitution.
+nnoremap & :&&<CR>
+xnoremap & :s//~/&<CR>:noh<CR>
+
+" Search for selected text.
+xnoremap * "zy/<C-R>z<CR>
+xnoremap # "zy?<C-R>z<CR>
+
+" Easier substitution.
+nnoremap <Leader>, :%s/
+xnoremap <Leader>, :s/
+
+" Split line on a comma, and do something
+nnoremap \ f,a<CR><Esc>^
+
+" Split function arguments or list members into their own lines.
+nnoremap <Leader>\ mq^f,`qv%J`qa<CR><Esc>k$%i<CR><Esc>k:s/, *\($\)\@!/,\r<CR>:noh<CR>`qv%=`q
+
+" Type a delimiter for splitting the line into separate lines.
+nnoremap <Leader><Leader>\ :s//&\r<Left><Left><Left><Left>
+xnoremap <Leader><Leader>\ :s//&\r<Left><Left><Left><Left>
+
+" Clear highlights.
+nnoremap <Esc> <Esc>:noh<CR>
+
+" Change eol comment to line comment and vice versa.
+nnoremap ä :s,^\(\s*\)\(\S.\{-}\)\s*\(\(#\\\|//\).*\)$,\1\3\r\1\2<CR>:noh<CR>
+nnoremap Ä :s,^\s*\(\(#\\\|//\).*\)$\n\(.\{-}\)\s*$,\3  \1<CR>:noh<CR>
+
+" Select previously yanked text.
+nnoremap gb `[v`]
+
+" Paste to the next or previous line.
+nnoremap gp o<Esc>p^
+nnoremap gP O<Esc>p^
+
+
+" =========== IDEAVIM MAPPINGS ===========
+
+" Go to the first occurance of the symbol in the file.
+nnoremap gf "zyiwgg/\C\\<\\><Left><Left><BS><C-R>z<CR>:noh<CR>
+
+" Go to the declaration of the first inherited parent class in Python.
+nmap go ?^class <CR>f(/[A-Z]<CR><Action>(GotoDeclarationOnly),noh<CR>
+
+nmap gd <Action>(GotoDeclarationOnly)
+nmap gr <Action>(GotoRelated)
+nmap gs <Action>(GotoSuperMethod)
+nmap gt <Action>(GotoTypeDeclaration)
+nmap gy <Action>(GotoTest)
+
+" Motions around jinja tags, these don't work perfectly, pretty rard to improve though.
+nnoremap cij /{%<CR>?%}<CR>f}a<C-O>c/{%<CR><C-O>:noh<CR>
+nnoremap caj /{%<CR>/%}<CR>f}a<C-O>2c?{%<CR><C-O>:noh<CR>
+nnoremap dij /{%<CR>?%}<CR>f}a<C-O>c/{%<CR><C-O>:noh<CR><Esc>l
+nnoremap daj /{%<CR>/%}<CR>f}a<C-O>2c?{%<CR><C-O>:noh<CR><Esc>
+nnoremap vij /{%<CR>?%}<CR>f}a<C-O>v/{%<CR>get{<Esc><Esc>:noh<CR>gv
+nnoremap vaj /{%<CR>/%}<CR>f}v2?{%<CR><Esc>:noh<CR>gvo
+nmap yij vijy
+nmap yaj vajy
+
+" Makes using marks a lot better, ` mapping clashes with surround.
+nmap ' <Action>(ShowBookmarks)
+nmap m <Action>(ToggleBookmarkWithMnemonic)
+
+" These only make sense as IdeaVim mappings, since Vim defines so many ]x mappings.
+nmap [ <Action>(MethodUp)
+nmap ] <Action>(MethodDown)
+
+map  <Leader>a <Action>(GotoAction)
+nmap <Leader>b <Action>(ToggleLineBreakpoint)
+nmap <Leader>be <Action>(EditBreakpoint)
+nmap <Leader>c <Action>(GotoClass)
+nmap <Leader>d <Action>(QuickJavaDoc)
+nmap <Leader>e <Action>(Run)
+nmap <Leader>f <Action>(GotoFile)
+nmap <Leader>g <Action>(ManageRecentProjects)
+nmap <Leader>h <Action>(FileStructurePopup)
+nmap <Leader>i <Action>(GotoImplementation)
+nmap <Leader>j <Action>(ShowNavBar)
+noremap  <Leader>k mo:action KJumpAction<CR>
+nmap <Leader>l <Action>(FindInPath)
+nmap <Leader>m <Action>(RecentChangedFiles)
+nmap <Leader>n <Action>(LocalHistory.ShowHistory)
+xmap <Leader>n <Action>(LocalHistory.ShowSelectionHistory)
+nmap <Leader>o <Action>(ShowReformatFileDialog)
+xmap <Leader>o <Action>(ReformatCode)
+nmap <Leader>p <Action>(PasteMultiple)
+nmap <Leader>q <Action>(ChooseRunConfiguration)
+nmap <Leader>r <Action>(RenameElement)
+nmap <Leader>s <Action>(GotoSymbol)
+map  <Leader>t <Action>(ExpressionTypeInfo)
+nmap <Leader>u <Action>(ShowUsages)
+nmap <Leader>v <Action>(ViewBreakpoints)
+nmap <Leader>w <Action>(Debug)
+map  <Leader>x <Action>(Refactorings.QuickListPopupAction)
+nmap <Leader>y <Action>(ShowErrorDescription)
+nmap <Leader>z <Action>(RenameFile)
+nnoremap <Leader>ä :s,^\(.\{-}\)\s*\(\(#\\\|//\).*\)$,\1<CR>:noh<CR>
+nmap <Leader>ö <Action>(HighlightUsagesInFile)
+
+nmap <Leader>< <Action>(CopyReferencePopupGroup)
+map  <Leader>] <Action>(SurroundWith)
+map  <Leader>[ <Action>(Unwrap)
+nmap <Leader>' <Action>(Generate)
+nmap <Leader>` <Action>(RerunFailedTests)
+nmap <Leader># <Action>(ActivateDatabaseToolWindow)
+nmap <Leader>% <Action>(TypeScript.Restart.Service)
+nmap <Leader>& <Action>(Git.ResolveConflicts)
+
+nmap <Leader>1 <Action>(InspectCode)
+nmap <Leader>2 <Action>(DebugClass)
+nmap <Leader>3 <Action>(RunClass)
+nmap <Leader>4 <Action>(Vcs.ShowTabbedFileHistory)
+xmap <Leader>4 <Action>(Vcs.ShowHistoryForBlock)
+nmap <Leader>5 <Action>(Annotate)
+nmap <Leader>6 <Action>(Compare.SameVersion)
+nmap <Leader>7 <Action>(ReplaceInPath)
+nmap <Leader>8 <Action>(ToggleBreakpointEnabled)
+nmap <Leader>9 <Action>(QuickImplementations)
+nmap <Leader>0 <Action>(Django.RunManageTaskAction)
+
+nmap <Leader><Esc> <Action>(ClearAllNotifications)
+
+" nnoremap <S-Space>J "zdiWi{{<Esc>zpp
+" remap <S-Space>J "zdi{{<Esc>"zp
+
+nmap <C-H> <Action>(ParameterInfo)
+nmap <C-J> <Action>(EditorCloneCaretBelow)
+nmap <C-K> <Action>(EditorCloneCaretAbove)
+imap <C-H> <Action>(ParameterInfo)
+imap <C-J> <Action>(EditorCloneCaretBelow)
+imap <C-K> <Action>(EditorCloneCaretAbove)
+imap <C-X> <Action>(CodeCompletion)
+
+nmap <C-P> <Action>(GotoPreviousError)
+nmap <C-N> <Action>(GotoNextError)
+
+nmap <C-S-P> <Action>(VcsShowPrevChangeMarker)
+nmap <C-S-N> <Action>(VcsShowNextChangeMarker)
+
+nmap <C-O> <Action>(Back)
+nmap <C-I> <Action>(Forward)
+
+nmap <F10> <Action>(ExportSettings)
+nmap <F11> <Action>(ImportSettings)
+nnoremap <F12> :source ~/.ideavimrc<CR>
+
+" Selects all editor content
+
+nnoremap <C-A> gg<S-v>G
+
+" u/U feels more natural to me for undo/redo than u/C-r
+nmap U <C-r>
+
+" Keymaps to move lines of code up and down
+noremap <S-j> :m .+1<CR>==
+noremap <S-k> :m .-2<CR>==
+" vnoremap <S-j> :m '>+1<CR>gv=gv
+" vnoremap <S-k> :m '<-2<CR>gv=gv
+
+
+sethandler a:vim
+sethandler <C-C> a:ide  " Stop (execution)
+sethandler <C-L> a:ide  " Complete Current Statement
+sethandler <C-M> a:ide  " Add Selection for Next Occurence (clone caret)
+sethandler <C-,> a:ide  " Unselect Occurence (unclone caret)
+sethandler <C-1> a:ide  " Hide All Tool Windows
+sethandler <C-2> a:ide  " Project (tool window)
+sethandler <C-3> a:ide  " Run (tool window)
+sethandler <C-4> a:ide  " Debug (tool window)
+sethandler <C-5> a:ide  " Terminal (tool window)
+sethandler <C-6> a:ide  " Python or Debug Console (tool window)
+sethandler <C-7> a:ide  " Git (tool window)
+sethandler <C-8> a:ide  " Build (tool window)
+sethandler <C-9> a:ide  " Type Hierarchy (sidebar)
+sethandler <C-0> a:ide  " Call Hierarchy (sidebar)
+sethandler <S-Tab> a:ide  " Copilot: Apply Completions to Editor / Copilot: Show Completions
+sethandler <C-[> a:ide  " Copilot: Show Previous Completions
+sethandler <C-]> a:ide  " Copilot: Show Next Completions
