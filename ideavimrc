@@ -330,8 +330,8 @@ nnoremap <C-A> gg<S-v>G
 nmap U <C-r>
 
 " Keymaps to move lines of code up and down
-noremap <S-j> :m .+1<CR>==
-noremap <S-k> :m .-2<CR>==
+noremap <C-S-j> :m .+1<CR>==
+noremap <C-S-k> :m .-2<CR>==
 " vnoremap <S-j> :m '>+1<CR>gv=gv
 " vnoremap <S-k> :m '<-2<CR>gv=gv
 
