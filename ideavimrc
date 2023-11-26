@@ -3,7 +3,7 @@ let mapleader=' '
 
 " ============= PLUGINS =============
 
-set surround
+"set surround
 set multiple-cursors
 set commentary
 set argtextobj
@@ -11,13 +11,29 @@ set ReplaceWithRegister
 set exchange
 set highlightedyank
 set matchit
+set quickscope
+set easymotion
+set surround
 
 " highlightedyank
 let g:highlightedyank_highlight_duration = '300'
 let g:highlightedyank_highlight_color = 'rgb(131, 148, 150, 120)'
 
+" quickscope
+let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+
+" easymotion
+Plug 'easymotion/vim-easymotion'
+map <Leader>j <Plug>(easymotion-f)
+map <Leader>J <Plug>(easymotion-F)
+
 " surround
-nmap S ysiW
+Plug 'tpope/vim-surround'
+" nmap S ysiW
+
+"vim-multiple-cursors"
+
+
 
 " ReplaceWithRegister
 nmap ö <PLug>ReplaceWithRegisterOperator
@@ -253,7 +269,7 @@ nmap <Leader>f <Action>(GotoFile)
 nmap <Leader>g <Action>(ManageRecentProjects)
 nmap <Leader>h <Action>(FileStructurePopup)
 nmap <Leader>i <Action>(GotoImplementation)
-nmap <Leader>j <Action>(ShowNavBar)
+nmap <Leader>vb <Action>(ShowNavBar)
 noremap  <Leader>k mo:action KJumpAction<CR>
 nmap <Leader>l <Action>(FindInPath)
 nmap <Leader>m <Action>(RecentChangedFiles)
@@ -272,12 +288,17 @@ nmap <Leader>w <Action>(Debug)
 map  <Leader>x <Action>(Refactorings.QuickListPopupAction)
 nmap <Leader>y <Action>(ShowErrorDescription)
 nmap <Leader>z <Action>(RenameFile)
+nmap <Leader>gu <Action>(Vcs.RollbackChangedLines)
+nmap <Leader>; <Action>(EditorCompleteStatement)
+nmap <Leader>: <Action>(ToggleDistractionFreeMode)
+nmap <Leader>co <Action>(CollapseRegion)
+nmap <Leader>cc <Action>(ExpandRegion)
 nnoremap <Leader>ä :s,^\(.\{-}\)\s*\(\(#\\\|//\).*\)$,\1<CR>:noh<CR>
 nmap <Leader>ö <Action>(HighlightUsagesInFile)
 
 nmap <Leader>< <Action>(CopyReferencePopupGroup)
-map  <Leader>] <Action>(SurroundWith)
-map  <Leader>[ <Action>(Unwrap)
+map  <Leader>[ <Action>(SurroundWith)
+map  <Leader>] <Action>(Unwrap)
 nmap <Leader>' <Action>(Generate)
 nmap <Leader>` <Action>(RerunFailedTests)
 nmap <Leader># <Action>(ActivateDatabaseToolWindow)
@@ -309,6 +330,8 @@ imap <C-J> <Action>(EditorCloneCaretBelow)
 imap <C-K> <Action>(EditorCloneCaretAbove)
 imap <C-X> <Action>(CodeCompletion)
 
+nmap <C-M> <Action>(MoveEditorToOppositeTabGroup)
+
 nmap <C-P> <Action>(GotoPreviousError)
 nmap <C-N> <Action>(GotoNextError)
 
@@ -339,7 +362,8 @@ noremap <C-S-k> :m .-2<CR>==
 sethandler a:vim
 sethandler <C-C> a:ide  " Stop (execution)
 sethandler <C-L> a:ide  " Complete Current Statement
-sethandler <C-M> a:ide  " Add Selection for Next Occurence (clone caret)
+"sethandler <C-I> a:ide  " Add Selection for Next Occurence (clone caret)
+
 sethandler <C-,> a:ide  " Unselect Occurence (unclone caret)
 sethandler <C-1> a:ide  " Hide All Tool Windows
 sethandler <C-2> a:ide  " Project (tool window)
