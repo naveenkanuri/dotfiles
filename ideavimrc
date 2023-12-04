@@ -15,6 +15,13 @@ set quickscope
 set easymotion
 set surround
 
+set idearefactormode=keep
+set ideajoin
+
+set NERDTree
+let g:NERDTreeMapActiveNode = 'l'
+let g:NERDTreeMapJumpParent = 'h'
+
 " highlightedyank
 let g:highlightedyank_highlight_duration = '300'
 let g:highlightedyank_highlight_color = 'rgb(131, 148, 150, 120)'
@@ -147,7 +154,7 @@ nnoremap <A-H> <C-W>h
 nnoremap <A-J> <C-W>j
 nnoremap <A-K> <C-W>k
 
-nmap <C-W>= <Action>(MaximizeEditorInSplit)
+nmap <C-W>e <Action>(MaximizeEditorInSplit)
 
 " Makes these easier to use.
 noremap , :
@@ -232,24 +239,12 @@ nnoremap gP O<Esc>p^
 " Go to the first occurance of the symbol in the file.
 nnoremap gf "zyiwgg/\C\\<\\><Left><Left><BS><C-R>z<CR>:noh<CR>
 
-" Go to the declaration of the first inherited parent class in Python.
-nmap go ?^class <CR>f(/[A-Z]<CR><Action>(GotoDeclarationOnly),noh<CR>
 
 nmap gd <Action>(GotoDeclarationOnly)
 nmap gr <Action>(GotoRelated)
 nmap gs <Action>(GotoSuperMethod)
 nmap gt <Action>(GotoTypeDeclaration)
 nmap gy <Action>(GotoTest)
-
-" Motions around jinja tags, these don't work perfectly, pretty rard to improve though.
-nnoremap cij /{%<CR>?%}<CR>f}a<C-O>c/{%<CR><C-O>:noh<CR>
-nnoremap caj /{%<CR>/%}<CR>f}a<C-O>2c?{%<CR><C-O>:noh<CR>
-nnoremap dij /{%<CR>?%}<CR>f}a<C-O>c/{%<CR><C-O>:noh<CR><Esc>l
-nnoremap daj /{%<CR>/%}<CR>f}a<C-O>2c?{%<CR><C-O>:noh<CR><Esc>
-nnoremap vij /{%<CR>?%}<CR>f}a<C-O>v/{%<CR>get{<Esc><Esc>:noh<CR>gv
-nnoremap vaj /{%<CR>/%}<CR>f}v2?{%<CR><Esc>:noh<CR>gvo
-nmap yij vijy
-nmap yaj vajy
 
 " Makes using marks a lot better, ` mapping clashes with surround.
 nmap ' <Action>(ShowBookmarks)
@@ -270,7 +265,8 @@ nmap <Leader>g <Action>(ManageRecentProjects)
 nmap <Leader>h <Action>(FileStructurePopup)
 nmap <Leader>i <Action>(GotoImplementation)
 nmap <Leader>vb <Action>(ShowNavBar)
-noremap  <Leader>k mo:action KJumpAction<CR>
+nmap <Leader>k <Action>(SelectAllOccurrences)
+"noremap  <Leader>k mo:action KJumpAction<CR>
 nmap <Leader>l <Action>(FindInPath)
 nmap <Leader>m <Action>(RecentChangedFiles)
 nmap <Leader>n <Action>(LocalHistory.ShowHistory)
@@ -378,3 +374,4 @@ sethandler <C-0> a:ide  " Call Hierarchy (sidebar)
 sethandler <S-Tab> a:ide  " Copilot: Apply Completions to Editor / Copilot: Show Completions
 sethandler <C-[> a:ide  " Copilot: Show Previous Completions
 sethandler <C-]> a:ide  " Copilot: Show Next Completions
+set number relativenumber
