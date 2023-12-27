@@ -281,6 +281,7 @@ nmap <Leader>n <Action>(LocalHistory.ShowHistory)
 xmap <Leader>n <Action>(LocalHistory.ShowSelectionHistory)
 nmap <Leader>o <Action>(ShowReformatFileDialog)
 xmap <Leader>o <Action>(ReformatCode)
+nmap <Leader>ot <Action>(ActivateTerminalToolWindow)
 nmap <Leader>p <Action>(PasteMultiple)
 nmap <Leader>q <Action>(ChooseRunConfiguration)
 nmap <Leader>r <Action>(RenameElement)
@@ -314,9 +315,9 @@ xmap <Leader>4 <Action>(Vcs.ShowHistoryForBlock)
 nmap <Leader>5 <Action>(Annotate)
 nmap <Leader>6 <Action>(Compare.SameVersion)
 nmap <Leader>7 <Action>(ReplaceInPath)
-nmap <Leader>8 <Action>(ToggleBreakpointEnabled)
+nmap <Leader>8 <Action>(Vcs.QuickListPopupAction)
 nmap <Leader>9 <Action>(QuickImplementations)
-nmap <Leader>0 <Action>(Django.RunManageTaskAction)
+imap <Leader>0 <Action>(InsertLiveTemplate)
 
 nmap <Leader><Esc> <Action>(ClearAllNotifications)
 
@@ -355,11 +356,10 @@ nnoremap <C-A> gg<S-v>G
 nmap U <C-r>
 
 " Keymaps to move lines of code up and down
-noremap <C-S-j> :m .+1<CR>==
-noremap <C-S-k> :m .-2<CR>==
-" vnoremap <S-j> :m '>+1<CR>gv=gv
-" vnoremap <S-k> :m '<-2<CR>gv=gv
-
+nmap <C-S-J> <Action>(MoveLineDown)
+nmap <C-S-K> <Action>(MoveLineUp)
+nmap <M-S-J> <Action>(MoveStatementDown)
+nmap <M-S-K> <Action>(MoveStatementUp)
 
 sethandler a:vim
 sethandler <C-C> a:ide  " Stop (execution)
