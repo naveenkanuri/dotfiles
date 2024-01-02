@@ -230,21 +230,40 @@ nnoremap Ä :s,^\s*\(\(#\\\|//\).*\)$\n\(.\{-}\)\s*$,\3  \1<CR>:noh<CR>
 nnoremap gb `[v`]
 
 " Paste to the next or previous line.
-nnoremap gp o<Esc>p^
-nnoremap gP O<Esc>p^
+"nnoremap gp o<Esc>p^
+"nnoremap gP O<Esc>p^
 
 
 " =========== IDEAVIM MAPPINGS ===========
 
 " Go to the first occurance of the symbol in the file.
-nnoremap gf "zyiwgg/\C\\<\\><Left><Left><BS><C-R>z<CR>:noh<CR>
+"nnoremap gf "zyiwgg/\C\\<\\><Left><Left><BS><C-R>z<CR>:noh<CR>
 
 
 nmap gd <Action>(GotoDeclarationOnly)
+nmap gi <Action>(GotoImplementation)
+nmap gh <Action>(ShowErrorDescription)
+nmap gf <Action>(SearchEverywhere)
+nmap gp <Action>(GotoPreviousError)
+nmap gn <Action>(GotoNextError)
+nmap gP <Action>(VcsShowPrevChangeMarker)
+nmap gN <Action>(VcsShowNextChangeMarker)
 nmap gr <Action>(GotoRelated)
 nmap gs <Action>(GotoSuperMethod)
 nmap gt <Action>(GotoTypeDeclaration)
 nmap gy <Action>(GotoTest)
+nmap gu <Action>(Vcs.RollbackChangedLines)
+nmap co <Action>(CollapseRegion)
+nmap cc <Action>(ExpandRegion)
+nmap em <Action>(ExtractMethod)
+nmap ev <Action>(IntroduceVariable)
+nmap ec <Action>(IntroduceConstant)
+nmap ep <Action>(IntroduceParameter)
+nmap qi <Action>(QuickImplementations)
+nmap sa <Action>(SelectAllOccurrences)
+map sn <Action>(SelectNextOccurrence)
+"nmap ot <Action>(ActivateTerminalToolWindow)
+nmap sb <Action>(ShowNavBar)
 
 " Makes using marks a lot better, ` mapping clashes with surround.
 nmap ' <Action>(ShowBookmarks)
@@ -258,22 +277,22 @@ map  <Leader>a <Action>(GotoAction)
 nmap <Leader>b <Action>(ToggleLineBreakpoint)
 nmap <Leader>be <Action>(EditBreakpoint)
 nmap <Leader>c <Action>(GotoClass)
-nmap <Leader>co <Action>(CollapseRegion)
-nmap <Leader>cc <Action>(ExpandRegion)
+"nmap <Leader>co <Action>(CollapseRegion)
+"nmap <Leader>cc <Action>(ExpandRegion)
 nmap <Leader>d <Action>(QuickJavaDoc)
-"nmap <Leader>e <Action>(Run)
-nmap <Leader>em <Action>(ExtractMethod)
-nmap <Leader>ev <Action>(IntroduceVariable)
-nmap <Leader>ec <Action>(IntroduceConstant)
-nmap <Leader>ep <Action>(IntroduceParameter)
+nmap <Leader>e <Action>(Run)
+"nmap <Leader>em <Action>(ExtractMethod)
+"nmap <Leader>ev <Action>(IntroduceVariable)
+"nmap <Leader>ec <Action>(IntroduceConstant)
+"nmap <Leader>ep <Action>(IntroduceParameter)
 nmap <Leader>f <Action>(GotoFile)
 nmap <Leader>g <Action>(ManageRecentProjects)
-nmap <Leader>gu <Action>(Vcs.RollbackChangedLines)
+"nmap <Leader>gu <Action>(Vcs.RollbackChangedLines)
 nmap <Leader>h <Action>(FileStructurePopup)
 nmap <Leader>hl <Action>(HighlightUsagesInFile)
 nmap <Leader>i <Action>(GotoImplementation)
-nmap <Leader>ka <Action>(SelectAllOccurrences)
-map <Leader>kn <Action>(SelectNextOccurrence)
+"nmap <Leader>ka <Action>(SelectAllOccurrences)
+"map <Leader>kn <Action>(SelectNextOccurrence)
 "noremap  <Leader>k mo:action KJumpAction<CR>
 nmap <Leader>l <Action>(FindInPath)
 nmap <Leader>m <Action>(RecentChangedFiles)
@@ -281,7 +300,7 @@ nmap <Leader>n <Action>(LocalHistory.ShowHistory)
 xmap <Leader>n <Action>(LocalHistory.ShowSelectionHistory)
 nmap <Leader>o <Action>(ShowReformatFileDialog)
 xmap <Leader>o <Action>(ReformatCode)
-nmap <Leader>ot <Action>(ActivateTerminalToolWindow)
+"nmap <Leader>ot <Action>(ActivateTerminalToolWindow)
 nmap <Leader>p <Action>(PasteMultiple)
 nmap <Leader>q <Action>(ChooseRunConfiguration)
 nmap <Leader>r <Action>(RenameElement)
@@ -290,7 +309,7 @@ nmap <Leader>s <Action>(GotoSymbol)
 nmap <Leader>t <Action>(QuickImplementations)
 nmap <Leader>u <Action>(ShowUsages)
 nmap <Leader>v <Action>(ViewBreakpoints)
-nmap <Leader>vb <Action>(ShowNavBar)
+"nmap <Leader>vb <Action>(ShowNavBar)
 nmap <Leader>w <Action>(Debug)
 map  <Leader>x <Action>(Refactorings.QuickListPopupAction)
 nmap <Leader>y <Action>(ShowErrorDescription)
@@ -317,7 +336,7 @@ nmap <Leader>6 <Action>(Compare.SameVersion)
 nmap <Leader>7 <Action>(ReplaceInPath)
 nmap <Leader>8 <Action>(Vcs.QuickListPopupAction)
 nmap <Leader>9 <Action>(QuickImplementations)
-imap <Leader>0 <Action>(InsertLiveTemplate)
+nmap <Leader>0 <Action>(InsertLiveTemplate)
 
 nmap <Leader><Esc> <Action>(ClearAllNotifications)
 
