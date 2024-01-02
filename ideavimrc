@@ -377,8 +377,8 @@ nmap U <C-r>
 " Keymaps to move lines of code up and down
 nmap <C-S-J> <Action>(MoveLineDown)
 nmap <C-S-K> <Action>(MoveLineUp)
-nmap <M-S-J> <Action>(MoveStatementDown)
-nmap <M-S-K> <Action>(MoveStatementUp)
+nmap <M-J> <Action>(MoveStatementDown)
+nmap <M-K> <Action>(MoveStatementUp)
 
 sethandler a:vim
 sethandler <C-C> a:ide  " Stop (execution)
