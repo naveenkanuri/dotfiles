@@ -239,7 +239,7 @@ nnoremap gb `[v`]
 " Go to the first occurance of the symbol in the file.
 "nnoremap gf "zyiwgg/\C\\<\\><Left><Left><BS><C-R>z<CR>:noh<CR>
 
-
+nmap ga <Action>(SelectInProjectView)
 nmap gd <Action>(GotoDeclarationOnly)
 nmap gi <Action>(GotoImplementation)
 nmap gh <Action>(ShowErrorDescription)
