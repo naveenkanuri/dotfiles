@@ -20,7 +20,9 @@ return {
   { import = "astrocommunity.diagnostics.trouble-nvim", enabled = true },
   -- editing
   { import = "astrocommunity.editing-support.rainbow-delimiters-nvim", enabled = true },
-  -- { import = "astrocommunity.editing-support.todo-comments-nvim", enabled = true },
+  { import = "astrocommunity.editing-support.todo-comments-nvim", enabled = true },
+  { import = "astrocommunity.editing-support.mini-splitjoin", enabled = true },
+  { import = "astrocommunity.editing-support.multicursors-nvim", enabled = true },
   -- scrolling
   { import = "astrocommunity.scrolling.mini-animate", enabled = true },
   -- syntax
@@ -32,6 +34,8 @@ return {
   { import = "astrocommunity.workflow.hardtime-nvim", enabled = true },
   -- bars-and-lines
   { import = "astrocommunity.bars-and-lines.vim-illuminate", enabled = true },
+  -- comment
+  { import = "astrocommunity.comment.mini-comment", enabled = true },
   { -- further customize the options set by the community
     "catppuccin",
     opts = {
