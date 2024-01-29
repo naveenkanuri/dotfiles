@@ -6,7 +6,7 @@ return {
   { import = "astrocommunity.pack.lua" },
   { import = "astrocommunity.pack.yaml" },
   { import = "astrocommunity.pack.markdown" },
-  { import = "astrocommunity.pack.typescript" },
+  { import = "astrocommunity.pack.angular" },
   { import = "astrocommunity.pack.cpp" },
   { import = "astrocommunity.pack.bash" },
   -- bars-and-lines
