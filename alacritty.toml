@@ -1,0 +1,26 @@
+[font]
+size = 22.0
+
+[font.bold]
+family = "UbuntuMono Nerd Font"
+style = "Bold"
+
+[font.italic]
+family = "UbuntuMono Nerd Font"
+style = "Italic"
+
+[font.normal]
+family = "UbuntuMono Nerd Font"
+style = "Regular"
+
+[window]
+# decorations = "None"
+decorations_theme_variant = "None"
+dynamic_title = true
+opacity = 0.93
+option_as_alt = "Both"
+startup_mode = "Maximized"
+
+[window.padding]
+x = 7
+y = 0
