@@ -18,6 +18,7 @@ return {
   { import = "astrocommunity.colorscheme.catppuccin", enabled = true },
   -- editing-support
   { import = "astrocommunity.editing-support.treesj" },
+  { import = "astrocommunity.editing-support.zen-mode-nvim" },
   -- motions
   { import = "astrocommunity.motion.flash-nvim", enabled = true },
   { import = "astrocommunity.motion.harpoon", enabled = true },
@@ -95,12 +96,16 @@ return {
   {
     "folke/flash.nvim",
     keys = {
-      {
-        "<leader>j",
-        mode = { "n", "x", "o" },
-        function() require("flash").jump() end,
-        desc = "Flash",
-      },
+      { "<leader>j", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
+    },
+  },
+  {
+    "folke/todo-comments.nvim",
+    keys = {
+      { "]t", mode = { "n" }, function() require("todo-comments").jump_next() end, desc = "Jump to next todo" },
+      { "[t", mode = { "n" }, function() require("todo-comments").jump_prev() end, desc = "Jump to prev todo" },
+      { "<leader>xs", "<CMD>TodoTelescope<CR>", desc = "Open Telescope todo picker" },
+      { "<leader>xt", "<CMD>TodoTrouble<CR>", desc = "Open Telescope trouble" },
     },
   },
 }
