@@ -1,6 +1,7 @@
 return {
-  colorscheme = "everforest",
+  -- colorscheme = "everforest",
   colorscheme = "catppuccin",
+  conceallevel = 2,
   diagnostics = {
     virtual_text = true,
     underline = true,
@@ -13,6 +14,12 @@ return {
         -- customize default disabled vim plugins
         disabled_plugins = { "tohtml", "gzip", "matchit", "zipPlugin", "netrwPlugin", "tarPlugin" },
       },
+    },
+  },
+  options = {
+    opt = {
+      showtabline = 0,
+      conceallevel = 2,
     },
   },
 }
