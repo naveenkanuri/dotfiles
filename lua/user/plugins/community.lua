@@ -9,8 +9,12 @@ return {
   { import = "astrocommunity.pack.angular" },
   { import = "astrocommunity.pack.cpp" },
   { import = "astrocommunity.pack.bash" },
+  { import = "astrocommunity.pack.java" },
   -- bars-and-lines
   { import = "astrocommunity.bars-and-lines.smartcolumn-nvim" },
+  { import = "astrocommunity.bars-and-lines.dropbar-nvim", enabled = false },
+  -- code-runner
+  { import = "astrocommunity.code-runner.compiler-nvim", enabled = true },
   -- completion
   { import = "astrocommunity.completion.copilot-lua" },
   -- colorschemes
@@ -19,6 +23,11 @@ return {
   -- editing-support
   { import = "astrocommunity.editing-support.treesj" },
   { import = "astrocommunity.editing-support.zen-mode-nvim" },
+  { import = "astrocommunity.editing-support.telescope-undo-nvim" },
+  { import = "astrocommunity.editing-support.rainbow-delimiters-nvim", enabled = true },
+  { import = "astrocommunity.editing-support.todo-comments-nvim", enabled = true },
+  { import = "astrocommunity.editing-support.mini-splitjoin", enabled = true },
+  { import = "astrocommunity.editing-support.multicursors-nvim", enabled = true },
   -- motions
   { import = "astrocommunity.motion.flash-nvim", enabled = true },
   { import = "astrocommunity.motion.harpoon", enabled = true },
@@ -28,11 +37,6 @@ return {
   -- debugging
   { import = "astrocommunity.debugging.persistent-breakpoints-nvim", enabled = true },
   { import = "astrocommunity.debugging.nvim-dap-virtual-text", enabled = true },
-  -- editing
-  { import = "astrocommunity.editing-support.rainbow-delimiters-nvim", enabled = true },
-  { import = "astrocommunity.editing-support.todo-comments-nvim", enabled = true },
-  { import = "astrocommunity.editing-support.mini-splitjoin", enabled = true },
-  { import = "astrocommunity.editing-support.multicursors-nvim", enabled = true },
   -- scrolling
   { import = "astrocommunity.scrolling.mini-animate", enabled = true },
   -- markdown-preview-nvim
@@ -50,6 +54,9 @@ return {
   { import = "astrocommunity.comment.mini-comment", enabled = true },
   -- note-taking
   { import = "astrocommunity.note-taking.obsidian-nvim", enabled = true },
+  -- color
+  { import = "astrocommunity.color.headlines-nvim", enabled = true },
+  { import = "astrocommunity.color.modes-nvim", enabled = true },
   { -- further customize the options set by the community
     "catppuccin",
     opts = {
@@ -91,7 +98,7 @@ return {
   },
   {
     "Wansmer/treesj",
-    keys = { { "<leader>J", "<CMD>TSJToggle<CR>", desc = "Toggle Treesitter Join" } },
+    keys = { { "<leader>J", "<CMD>TSJToggle<CR>", desc = "Toggle Treesitter Toggle" } },
   },
   {
     "folke/flash.nvim",
@@ -106,6 +113,19 @@ return {
       { "[t", mode = { "n" }, function() require("todo-comments").jump_prev() end, desc = "Jump to prev todo" },
       { "<leader>xs", "<CMD>TodoTelescope<CR>", desc = "Open Telescope todo picker" },
       { "<leader>xt", "<CMD>TodoTrouble<CR>", desc = "Open Telescope trouble" },
+    },
+  },
+  {
+    "smoka7/multicursors.nvim",
+    keys = {
+      { mode = { "v", "n" }, "<Leader>m", "<cmd>MCstart<cr>", desc = "Create a selection for word under the cursor" },
+    },
+  },
+  {
+    "Zeioth/compiler.nvim",
+    keys = {
+      { "<leader>co", "<cmd>CompilerOpen<cr>", desc = "Open compiler" },
+      { "<leader>ct", "<cmd>CompilerToggleResults<cr>", desc = "Open compiler" },
     },
   },
 }
