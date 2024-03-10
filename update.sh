@@ -10,9 +10,6 @@ done
 echo "cleaning brew..."
 brew cleanup
 
-echo "updating powerlevel10k...."
-git -C ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k pull
-
 echo "updating alacritty themes...."
 git -C $HOME/.config/alacritty/themes pull
 
