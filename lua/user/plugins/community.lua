@@ -1,6 +1,11 @@
+-- AstroCommunity: import any community modules here
+-- We import this file in `lazy_setup.lua` before the `plugins/` folder.
+-- This guarantees that the specs are processed before any user plugins.
+
+---@type LazySpec
 return {
   "AstroNvim/astrocommunity",
-  -- language packs
+  -- import/override with your plugins folder
   { import = "astrocommunity.pack.rust" },
   { import = "astrocommunity.pack.go" },
   { import = "astrocommunity.pack.lua" },
@@ -10,6 +15,7 @@ return {
   { import = "astrocommunity.pack.cpp" },
   { import = "astrocommunity.pack.bash" },
   { import = "astrocommunity.pack.java" },
+  { import = "astrocommunity.pack.zig" },
   -- bars-and-lines
   { import = "astrocommunity.bars-and-lines.smartcolumn-nvim" },
   { import = "astrocommunity.bars-and-lines.dropbar-nvim", enabled = false },
@@ -32,6 +38,7 @@ return {
   { import = "astrocommunity.motion.flash-nvim", enabled = true },
   { import = "astrocommunity.motion.harpoon", enabled = true },
   { import = "astrocommunity.motion.mini-move", enabled = true },
+  { import = "astrocommunity.motion.mini-surround", enabled = true },
   -- diagnostics
   { import = "astrocommunity.diagnostics.trouble-nvim", enabled = true },
   -- debugging
@@ -47,7 +54,7 @@ return {
   { import = "astrocommunity.test.neotest", enabled = true },
   { import = "astrocommunity.test.nvim-coverage", enabled = true },
   -- workflow
-  { import = "astrocommunity.workflow.hardtime-nvim", enabled = true },
+  { import = "astrocommunity.workflow.hardtime-nvim", enabled = false },
   -- bars-and-lines
   { import = "astrocommunity.bars-and-lines.vim-illuminate", enabled = true },
   -- comment
@@ -101,12 +108,6 @@ return {
     keys = { { "<leader>J", "<CMD>TSJToggle<CR>", desc = "Toggle Treesitter Toggle" } },
   },
   {
-    "folke/flash.nvim",
-    keys = {
-      { "<leader>j", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
-    },
-  },
-  {
     "folke/todo-comments.nvim",
     keys = {
       { "]t", mode = { "n" }, function() require("todo-comments").jump_next() end, desc = "Jump to next todo" },
@@ -115,6 +116,8 @@ return {
       { "<leader>xt", "<CMD>TodoTrouble<CR>", desc = "Open Telescope trouble" },
     },
   },
+
+  --  hello world
   {
     "smoka7/multicursors.nvim",
     keys = {
@@ -126,6 +129,22 @@ return {
     keys = {
       { "<leader>co", "<cmd>CompilerOpen<cr>", desc = "Open compiler" },
       { "<leader>ct", "<cmd>CompilerToggleResults<cr>", desc = "Open compiler" },
+    },
+  },
+  {
+    "echasnovski/mini.surround",
+    opts = {
+      mappings = {
+        add = "sa", -- Add surrounding in Normal and Visual modes
+        delete = "sd", -- Delete surrounding
+        find = "sf", -- Find surrounding (to the right)
+        find_left = "sF", -- Find surrounding (to the left)
+        highlight = "sh", -- Highlight surrounding
+        replace = "sr", -- Replace surrounding
+        update_n_lines = "sn", -- Update `n_lines`
+        suffix_last = "l", -- Suffix to search with "prev" method
+        suffix_next = "n", -- Suffix to search with "next" method
+      },
     },
   },
 }
