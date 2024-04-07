@@ -116,8 +116,6 @@ return {
       { "<leader>xt", "<CMD>TodoTrouble<CR>", desc = "Open Telescope trouble" },
     },
   },
-
-  --  hello world
   {
     "smoka7/multicursors.nvim",
     keys = {
