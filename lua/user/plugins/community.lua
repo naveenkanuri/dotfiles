@@ -16,6 +16,14 @@ return {
   { import = "astrocommunity.pack.bash" },
   { import = "astrocommunity.pack.java" },
   { import = "astrocommunity.pack.zig" },
+  -- lsp
+  -- { import = "astrocommunity.lsp.coc-nvim", enabled = true },
+  { import = "astrocommunity.lsp.actions-preview-nvim", enabled = true },
+  { import = "astrocommunity.lsp.delimited-nvim", enabled = true },
+  { import = "astrocommunity.lsp.garbage-day-nvim", enabled = true },
+  { import = "astrocommunity.lsp.lsp-lens-nvim", enabled = true },
+  { import = "astrocommunity.lsp.lsp-signature-nvim", enabled = true },
+  { import = "astrocommunity.lsp.lsplinks-nvim", enabled = true },
   -- bars-and-lines
   { import = "astrocommunity.bars-and-lines.smartcolumn-nvim" },
   { import = "astrocommunity.bars-and-lines.dropbar-nvim", enabled = false },
