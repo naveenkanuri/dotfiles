@@ -36,101 +36,101 @@ map <Leader>J <Plug>(easymotion-F)
 
 " surround
 Plug 'tpope/vim-surround'
-" nmap S ysiW
+nmap S ysiW
 
 "vim-multiple-cursors"
 
 
 
 " ReplaceWithRegister
-nmap ö <PLug>ReplaceWithRegisterOperator
-nmap Ö <PLug>ReplaceWithRegisterOperator$
-nmap öö <PLug>ReplaceWithRegisterLine
-xmap ö <PLug>ReplaceWithRegisterVisual
+"nmap ö <PLug>ReplaceWithRegisterOperator
+"nmap Ö <PLug>ReplaceWithRegisterOperator$
+"nmap öö <PLug>ReplaceWithRegisterLine
+"xmap ö <PLug>ReplaceWithRegisterVisual
 
-" Text objects for delimiters.
-nnoremap ci/ T/ct/
-nnoremap ca/ F/ct/
-nnoremap ci, T,ct,
-nnoremap ca, F,ct,
-nnoremap ci. T.ct.
-nnoremap ca. F.ct.
-nnoremap ci_ T_ct_
-nnoremap ca_ F_ct_
-nnoremap ci- T-ct-
-nnoremap ca- F-ct-
-nnoremap ci% T%ct%
-nnoremap ca% F%ct%
-nnoremap ci= T=ct=
-nnoremap ca= F=ct=
-nnoremap ci? T?ct?
-nnoremap ca? F?ct?
-nnoremap ci! T!ct!
-nnoremap ca! F!ct!
-nnoremap ci& T&ct&
-nnoremap ca& F&ct&
-nnoremap di/ T/dt/
-nnoremap da/ F/dt/
-nnoremap di, T,dt,
-nnoremap da, F,dt,
-nnoremap di. T.dt.
-nnoremap da. F.dt.
-nnoremap di_ T_dt_
-nnoremap da_ F_dt_
-nnoremap di- T-dt-
-nnoremap da- F-dt-
-nnoremap di% T%dt%
-nnoremap da% F%dt%
-nnoremap di= T=dt=
-nnoremap da= F=dt=
-nnoremap di? T?dt?
-nnoremap da? F?dt?
-nnoremap di! T!dt!
-nnoremap da! F!dt!
-nnoremap di& T&dt&
-nnoremap da& F&dt&
-nnoremap vi/ T/vt/
-nnoremap va/ F/vt/
-nnoremap vi, T,vt,
-nnoremap va, F,vt,
-nnoremap vi. T.vt.
-nnoremap va. F.vt.
-nnoremap vi_ T_vt_
-nnoremap va_ F_vt_
-nnoremap vi- T-vt-
-nnoremap va- F-vt-
-nnoremap vi% T%vt%
-nnoremap va% F%vt%
-nnoremap vi= T=vt=
-nnoremap va= F=vt=
-nnoremap vi? T?vt?
-nnoremap va? F?vt?
-nnoremap vi! T!vt!
-nnoremap va! F!vt!
-nnoremap vi& T&vt&
-nnoremap va& F&vt&
-nnoremap yi/ T/yt/
-nnoremap ya/ F/yt/
-nnoremap yi, T,yt,
-nnoremap ya, F,yt,
-nnoremap yi. T.yt.
-nnoremap ya. F.yt.
-nnoremap yi_ T_yt_
-nnoremap ya_ F_yt_
-nnoremap yi- T-yt-
-nnoremap ya- F-yt-
-nnoremap yi% T%yt%
-nnoremap ya% F%yt%
-nnoremap yi= T=yt=
-nnoremap ya= F=yt=
-nnoremap yi? T?yt?
-nnoremap ya? F?yt?
-nnoremap yi! T!yt!
-nnoremap ya! F!yt!
-nnoremap yi& T&yt&
-nnoremap ya& F&yt&
-
-
+"" Text objects for delimiters.
+"nnoremap ci/ T/ct/
+"nnoremap ca/ F/ct/
+"nnoremap ci, T,ct,
+"nnoremap ca, F,ct,
+"nnoremap ci. T.ct.
+"nnoremap ca. F.ct.
+"nnoremap ci_ T_ct_
+"nnoremap ca_ F_ct_
+"nnoremap ci- T-ct-
+"nnoremap ca- F-ct-
+"nnoremap ci% T%ct%
+"nnoremap ca% F%ct%
+"nnoremap ci= T=ct=
+"nnoremap ca= F=ct=
+"nnoremap ci? T?ct?
+"nnoremap ca? F?ct?
+"nnoremap ci! T!ct!
+"nnoremap ca! F!ct!
+"nnoremap ci& T&ct&
+"nnoremap ca& F&ct&
+"nnoremap di/ T/dt/
+"nnoremap da/ F/dt/
+"nnoremap di, T,dt,
+"nnoremap da, F,dt,
+"nnoremap di. T.dt.
+"nnoremap da. F.dt.
+"nnoremap di_ T_dt_
+"nnoremap da_ F_dt_
+"nnoremap di- T-dt-
+"nnoremap da- F-dt-
+"nnoremap di% T%dt%
+"nnoremap da% F%dt%
+"nnoremap di= T=dt=
+"nnoremap da= F=dt=
+"nnoremap di? T?dt?
+"nnoremap da? F?dt?
+"nnoremap di! T!dt!
+"nnoremap da! F!dt!
+"nnoremap di& T&dt&
+"nnoremap da& F&dt&
+"nnoremap vi/ T/vt/
+"nnoremap va/ F/vt/
+"nnoremap vi, T,vt,
+"nnoremap va, F,vt,
+"nnoremap vi. T.vt.
+"nnoremap va. F.vt.
+"nnoremap vi_ T_vt_
+"nnoremap va_ F_vt_
+"nnoremap vi- T-vt-
+"nnoremap va- F-vt-
+"nnoremap vi% T%vt%
+"nnoremap va% F%vt%
+"nnoremap vi= T=vt=
+"nnoremap va= F=vt=
+"nnoremap vi? T?vt?
+"nnoremap va? F?vt?
+"nnoremap vi! T!vt!
+"nnoremap va! F!vt!
+"nnoremap vi& T&vt&
+"nnoremap va& F&vt&
+"nnoremap yi/ T/yt/
+"nnoremap ya/ F/yt/
+"nnoremap yi, T,yt,
+"nnoremap ya, F,yt,
+"nnoremap yi. T.yt.
+"nnoremap ya. F.yt.
+"nnoremap yi_ T_yt_
+"nnoremap ya_ F_yt_
+"nnoremap yi- T-yt-
+"nnoremap ya- F-yt-
+"nnoremap yi% T%yt%
+"nnoremap ya% F%yt%
+"nnoremap yi= T=yt=
+"nnoremap ya= F=yt=
+"nnoremap yi? T?yt?
+"nnoremap ya? F?yt?
+"nnoremap yi! T!yt!
+"nnoremap ya! F!yt!
+"nnoremap yi& T&yt&
+"nnoremap ya& F&yt&
+"
+"
 " ============= GENERAL =============
 
 " Search settings.
@@ -148,13 +148,16 @@ set visualbell                " removes errorbells
 
 " ============= MAPPINGS =============
 
-" Move between splits.
-nnoremap <A-L> <C-W>l
+"Splits
+nmap \| <Action>(MoveTabRight)
+nmap \\ <Action>(MoveTabDown)
+noremap <A-L> <C-W>l
 nnoremap <A-H> <C-W>h
 nnoremap <A-J> <C-W>j
 nnoremap <A-K> <C-W>k
-
-nmap <C-W>e <Action>(MaximizeEditorInSplit)
+nmap <A-O> <Action>(MoveEditorToOppositeTabGroup)
+nmap <A-U> <Action>(Unsplit)
+nmap <A-C> <Action>(ChangeSplitOrientation)
 
 " Makes these easier to use.
 noremap , :
@@ -168,19 +171,20 @@ xnoremap + $
 nnoremap Y y$
 
 " Makes v and V more consistent with other commands.
-nnoremap vv V
+"nnoremap vv V
 nnoremap V <C-V>$
 
 " Cleaner to use when cursor doesn't move.
 nnoremap J Jh
 
 " Make K the logical opposite of J.
-nnoremap K a<CR><Esc>k$
+"nnoremap K a<CR><Esc>k$
+
 
 " Change enter behavior.
-nnoremap <CR> mqo<Esc>`q
+"nnoremap <CR> mqo<Esc>`q
 " FIXME: This doesn't keep cursor on the same place.
-nnoremap <S-Enter> mqO<Esc>`q
+"nnoremap <S-Enter> mqO<Esc>`q
 
 " Better way to indent.
 nnoremap <BS> <<
@@ -210,7 +214,6 @@ nnoremap <Leader>, :%s/
 xnoremap <Leader>, :s/
 
 " Split line on a comma, and do something
-nnoremap \ f,a<CR><Esc>^
 
 " Split function arguments or list members into their own lines.
 nnoremap <Leader>\ mq^f,`qv%J`qa<CR><Esc>k$%i<CR><Esc>k:s/, *\($\)\@!/,\r<CR>:noh<CR>`qv%=`q
@@ -222,9 +225,7 @@ xnoremap <Leader><Leader>\ :s//&\r<Left><Left><Left><Left>
 " Clear highlights.
 nnoremap <Esc> <Esc>:noh<CR>
 
-" Change eol comment to line comment and vice versa.
-nnoremap ä :s,^\(\s*\)\(\S.\{-}\)\s*\(\(#\\\|//\).*\)$,\1\3\r\1\2<CR>:noh<CR>
-nnoremap Ä :s,^\s*\(\(#\\\|//\).*\)$\n\(.\{-}\)\s*$,\3  \1<CR>:noh<CR>
+
 
 " Select previously yanked text.
 nnoremap gb `[v`]
@@ -239,9 +240,8 @@ nnoremap gb `[v`]
 " Go to the first occurance of the symbol in the file.
 "nnoremap gf "zyiwgg/\C\\<\\><Left><Left><BS><C-R>z<CR>:noh<CR>
 
-nmap \| <Action>(MoveTabRight)
-nmap \\ <Action>(MoveTabDown)
 nmap ga <Action>(SelectInProjectView)
+nmap ge <Action>(Generate)
 nmap gd <Action>(GotoDeclarationOnly)
 nmap gi <Action>(GotoImplementation)
 nmap gh <Action>(ShowErrorDescription)
@@ -261,14 +261,13 @@ map em <Action>(ExtractMethod)
 map ev <Action>(IntroduceVariable)
 map ec <Action>(IntroduceConstant)
 map ep <Action>(IntroduceParameter)
-nmap qi <Action>(QuickImplementations)
 nmap sa <Action>(SelectAllOccurrences)
 map sn <Action>(SelectNextOccurrence)
 "nmap ot <Action>(ActivateTerminalToolWindow)
 nmap sb <Action>(ShowNavBar)
 
 " Makes using marks a lot better, ` mapping clashes with surround.
-nmap ' <Action>(ShowBookmarks)
+nmap sm <Action>(ShowBookmarks)
 nmap m <Action>(ToggleBookmarkWithMnemonic)
 
 " These only make sense as IdeaVim mappings, since Vim defines so many ]x mappings.
@@ -279,14 +278,8 @@ map  <Leader>a <Action>(GotoAction)
 nmap <Leader>b <Action>(ToggleLineBreakpoint)
 nmap <Leader>be <Action>(EditBreakpoint)
 nmap <Leader>c <Action>(GotoClass)
-"nmap <Leader>co <Action>(CollapseRegion)
-"nmap <Leader>cc <Action>(ExpandRegion)
 nmap <Leader>d <Action>(QuickJavaDoc)
 nmap <Leader>e <Action>(Run)
-"nmap <Leader>em <Action>(ExtractMethod)
-"nmap <Leader>ev <Action>(IntroduceVariable)
-"nmap <Leader>ec <Action>(IntroduceConstant)
-"nmap <Leader>ep <Action>(IntroduceParameter)
 nmap <Leader>ff <Action>(GotoFile)
 nmap <Leader>g <Action>(ManageRecentProjects)
 "nmap <Leader>gu <Action>(Vcs.RollbackChangedLines)
@@ -308,11 +301,12 @@ nmap <Leader>q <Action>(ChooseRunConfiguration)
 nmap <Leader>r <Action>(RenameElement)
 nmap <Leader>s <Action>(GotoSymbol)
 "map  <Leader>t <Action>(ExpressionTypeInfo)
-nmap <Leader>t <Action>(QuickImplementations)
+"nmap <Leader>t <Action>(QuickImplementations)
+nmap <S-K> <Action>(QuickImplementations)
 nmap <Leader>u <Action>(ShowUsages)
-nmap <Leader>v <Action>(ViewBreakpoints)
+"nmap <Leader>v <Action>(ViewBreakpoints)
 "nmap <Leader>vb <Action>(ShowNavBar)
-nmap <Leader>w <Action>(Debug)
+"nmap <Leader>w <Action>(Debug)
 map  <Leader>x <Action>(Refactorings.QuickListPopupAction)
 nmap <Leader>y <Action>(ShowErrorDescription)
 nmap <Leader>z <Action>(RenameFile)
@@ -353,14 +347,6 @@ imap <C-H> <Action>(ParameterInfo)
 imap <C-J> <Action>(EditorCloneCaretBelow)
 imap <C-K> <Action>(EditorCloneCaretAbove)
 imap <C-X> <Action>(CodeCompletion)
-
-nmap <C-M> <Action>(MoveEditorToOppositeTabGroup)
-
-nmap <C-P> <Action>(GotoPreviousError)
-nmap <C-N> <Action>(GotoNextError)
-
-nmap <C-S-P> <Action>(VcsShowPrevChangeMarker)
-nmap <C-S-N> <Action>(VcsShowNextChangeMarker)
 
 nmap <C-O> <Action>(Back)
 nmap <C-I> <Action>(Forward)
