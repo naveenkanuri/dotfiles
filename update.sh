@@ -13,6 +13,9 @@ brew cleanup
 echo "updating alacritty themes...."
 git -C $HOME/.config/alacritty/themes pull
 
+echo "updating neovim config"
+git -C $HOME/.config/nvim pull
+
 echo "udpating rust...."
 rustup update
 
