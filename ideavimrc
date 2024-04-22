@@ -19,6 +19,7 @@ set idearefactormode=keep
 set ideajoin
 
 set NERDTree
+"https://github.com/JetBrains/ideavim/wiki/NERDTree-support
 let g:NERDTreeMapActiveNode = 'l'
 let g:NERDTreeMapJumpParent = 'h'
 
@@ -156,7 +157,7 @@ nnoremap <A-H> <C-W>h
 nnoremap <A-J> <C-W>j
 nnoremap <A-K> <C-W>k
 nmap <A-O> <Action>(MoveEditorToOppositeTabGroup)
-nmap <A-U> <Action>(Unsplit)
+nmap <A-;> <Action>(Unsplit)
 nmap <A-C> <Action>(ChangeSplitOrientation)
 
 " Makes these easier to use.
@@ -228,7 +229,7 @@ nnoremap <Esc> <Esc>:noh<CR>
 
 
 " Select previously yanked text.
-nnoremap gb `[v`]
+"nnoremap gb `[v`]
 
 " Paste to the next or previous line.
 "nnoremap gp o<Esc>p^
@@ -244,13 +245,14 @@ nmap ga <Action>(SelectInProjectView)
 nmap ge <Action>(Generate)
 nmap gd <Action>(GotoDeclarationOnly)
 nmap gi <Action>(GotoImplementation)
-nmap gh <Action>(ShowErrorDescription)
+nmap gl <Action>(ShowErrorDescription)
 nmap gf <Action>(SearchEverywhere)
 nmap gp <Action>(GotoPreviousError)
 nmap gn <Action>(GotoNextError)
 nmap gP <Action>(VcsShowPrevChangeMarker)
 nmap gN <Action>(VcsShowNextChangeMarker)
-nmap gr <Action>(GotoRelated)
+nmap gr <Action>(ShowUsages)
+"nmap gR <Action>(GotoRelated)
 nmap gs <Action>(GotoSuperMethod)
 nmap gt <Action>(GotoTypeDeclaration)
 nmap gy <Action>(GotoTest)
@@ -289,6 +291,8 @@ nmap <Leader>i <Action>(GotoImplementation)
 "nmap <Leader>ka <Action>(SelectAllOccurrences)
 "map <Leader>kn <Action>(SelectNextOccurrence)
 "noremap  <Leader>k mo:action KJumpAction<CR>
+nmap <Leader>lr <Action>(RenameElement)
+nmap <Leader>la <Action>(ShowIntentionActions)
 nmap <Leader>fw <Action>(FindInPath)
 nmap <Leader>m <Action>(RecentChangedFiles)
 nmap <Leader>n <Action>(LocalHistory.ShowHistory)
