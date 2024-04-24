@@ -24,6 +24,9 @@ return {
   { import = "astrocommunity.lsp.lsp-lens-nvim", enabled = true },
   { import = "astrocommunity.lsp.lsp-signature-nvim", enabled = true },
   { import = "astrocommunity.lsp.lsplinks-nvim", enabled = true },
+  -- git
+  { import = "astrocommunity.git.blame-nvim", enabled = true },
+  { import = "astrocommunity.git.diffview-nvim", enabled = true },
   -- bars-and-lines
   { import = "astrocommunity.bars-and-lines.smartcolumn-nvim" },
   { import = "astrocommunity.bars-and-lines.dropbar-nvim", enabled = false },
@@ -47,6 +50,7 @@ return {
   { import = "astrocommunity.motion.harpoon", enabled = true },
   { import = "astrocommunity.motion.mini-move", enabled = true },
   { import = "astrocommunity.motion.mini-surround", enabled = true },
+  { import = "astrocommunity.motion.nvim-spider", enabled = true },
   -- diagnostics
   { import = "astrocommunity.diagnostics.trouble-nvim", enabled = true },
   -- debugging
