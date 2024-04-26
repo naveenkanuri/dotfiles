@@ -19,7 +19,6 @@ set idearefactormode=keep
 set ideajoin
 
 set NERDTree
-"https://github.com/JetBrains/ideavim/wiki/NERDTree-support
 let g:NERDTreeMapActiveNode = 'l'
 let g:NERDTreeMapJumpParent = 'h'
 
@@ -157,8 +156,16 @@ nnoremap <A-H> <C-W>h
 nnoremap <A-J> <C-W>j
 nnoremap <A-K> <C-W>k
 nmap <A-O> <Action>(MoveEditorToOppositeTabGroup)
-nmap <A-;> <Action>(Unsplit)
+nmap <A-U> <Action>(Unsplit)
 nmap <A-C> <Action>(ChangeSplitOrientation)
+nmap <A-S> <Action>(Stop)
+nmap <A-R> <Action>(Run)
+nmap <A-D> <Action>(Debug)
+nmap <S-K> <Action>(QuickImplementations)
+nmap w <Action>(EditorNextWordInDifferentHumpsMode)
+"nmap b <Action>(EditorPreviousWordInDifferentHumps)
+nmap dw <Action>(EditorDeleteToWordEndInDifferentHumpsMode)
+
 
 " Makes these easier to use.
 noremap , :
@@ -229,7 +236,7 @@ nnoremap <Esc> <Esc>:noh<CR>
 
 
 " Select previously yanked text.
-"nnoremap gb `[v`]
+nnoremap gb `[v`]
 
 " Paste to the next or previous line.
 "nnoremap gp o<Esc>p^
@@ -245,14 +252,13 @@ nmap ga <Action>(SelectInProjectView)
 nmap ge <Action>(Generate)
 nmap gd <Action>(GotoDeclarationOnly)
 nmap gi <Action>(GotoImplementation)
-nmap gl <Action>(ShowErrorDescription)
+nmap gh <Action>(ShowErrorDescription)
 nmap gf <Action>(SearchEverywhere)
 nmap gp <Action>(GotoPreviousError)
 nmap gn <Action>(GotoNextError)
 nmap gP <Action>(VcsShowPrevChangeMarker)
 nmap gN <Action>(VcsShowNextChangeMarker)
-nmap gr <Action>(ShowUsages)
-"nmap gR <Action>(GotoRelated)
+nmap gr <Action>(GotoRelated)
 nmap gs <Action>(GotoSuperMethod)
 nmap gt <Action>(GotoTypeDeclaration)
 nmap gy <Action>(GotoTest)
@@ -281,7 +287,7 @@ nmap <Leader>b <Action>(ToggleLineBreakpoint)
 nmap <Leader>be <Action>(EditBreakpoint)
 nmap <Leader>c <Action>(GotoClass)
 nmap <Leader>d <Action>(QuickJavaDoc)
-nmap <Leader>e <Action>(Run)
+"nmap <Leader>e <Action>(Run)
 nmap <Leader>ff <Action>(GotoFile)
 nmap <Leader>g <Action>(ManageRecentProjects)
 "nmap <Leader>gu <Action>(Vcs.RollbackChangedLines)
@@ -291,8 +297,6 @@ nmap <Leader>i <Action>(GotoImplementation)
 "nmap <Leader>ka <Action>(SelectAllOccurrences)
 "map <Leader>kn <Action>(SelectNextOccurrence)
 "noremap  <Leader>k mo:action KJumpAction<CR>
-nmap <Leader>lr <Action>(RenameElement)
-nmap <Leader>la <Action>(ShowIntentionActions)
 nmap <Leader>fw <Action>(FindInPath)
 nmap <Leader>m <Action>(RecentChangedFiles)
 nmap <Leader>n <Action>(LocalHistory.ShowHistory)
@@ -306,7 +310,6 @@ nmap <Leader>r <Action>(RenameElement)
 nmap <Leader>s <Action>(GotoSymbol)
 "map  <Leader>t <Action>(ExpressionTypeInfo)
 "nmap <Leader>t <Action>(QuickImplementations)
-nmap <S-K> <Action>(QuickImplementations)
 nmap <Leader>u <Action>(ShowUsages)
 "nmap <Leader>v <Action>(ViewBreakpoints)
 "nmap <Leader>vb <Action>(ShowNavBar)
