@@ -19,6 +19,7 @@ set idearefactormode=keep
 set ideajoin
 
 set NERDTree
+" https://github.com/JetBrains/ideavim/wiki/NERDTree-support
 let g:NERDTreeMapActiveNode = 'l'
 let g:NERDTreeMapJumpParent = 'h'
 
@@ -156,7 +157,7 @@ nnoremap <A-H> <C-W>h
 nnoremap <A-J> <C-W>j
 nnoremap <A-K> <C-W>k
 nmap <A-O> <Action>(MoveEditorToOppositeTabGroup)
-nmap <A-U> <Action>(Unsplit)
+nmap <A-;> <Action>(Unsplit)
 nmap <A-C> <Action>(ChangeSplitOrientation)
 nmap <A-S> <Action>(Stop)
 nmap <A-R> <Action>(Run)
