@@ -164,14 +164,19 @@ nmap <A-R> <Action>(Run)
 nmap <A-D> <Action>(Debug)
 nmap <S-K> <Action>(QuickImplementations)
 nmap w <Action>(EditorNextWordInDifferentHumpsMode)
-"nmap b <Action>(EditorPreviousWordInDifferentHumps)
 nmap dw <Action>(EditorDeleteToWordEndInDifferentHumpsMode)
+"nmap b <Action>(EditorPreviousWordInDifferentHumps)
 
+" Keymaps to move lines of code up and down
+nmap <C-S-J> <Action>(MoveLineDown)
+nmap <C-S-K> <Action>(MoveLineUp)
+nmap <A-S-J> <Action>(MoveStatementDown)
+nmap <A-S-K> <Action>(MoveStatementUp)
 
 " Makes these easier to use.
-noremap , :
-noremap : ;
-noremap ; ,
+"noremap , :
+"noremap : ;
+"noremap ; ,
 
 nnoremap + $
 xnoremap + $
@@ -253,7 +258,8 @@ nmap ga <Action>(SelectInProjectView)
 nmap ge <Action>(Generate)
 nmap gd <Action>(GotoDeclarationOnly)
 nmap gi <Action>(GotoImplementation)
-nmap gh <Action>(ShowErrorDescription)
+"nmap gh <Action>(ShowIntentionActions)
+nmap gl <Action>(ShowErrorDescription)
 nmap gf <Action>(SearchEverywhere)
 nmap gp <Action>(GotoPreviousError)
 nmap gn <Action>(GotoNextError)
@@ -264,8 +270,11 @@ nmap gs <Action>(GotoSuperMethod)
 nmap gt <Action>(GotoTypeDeclaration)
 nmap gy <Action>(GotoTest)
 nmap gu <Action>(Vcs.RollbackChangedLines)
-nmap co <Action>(CollapseRegion)
-nmap cc <Action>(ExpandRegion)
+nmap zc <Action>(CollapseRegion)
+nmap zo <Action>(ExpandRegion)
+nmap zm <Action>(CollapseAllRegions)
+nmap zr <Action>(ExpandAllRegions)
+nmap zi <Action>(ExpandCollapseToggleAction)
 map em <Action>(ExtractMethod)
 map ev <Action>(IntroduceVariable)
 map ec <Action>(IntroduceConstant)
@@ -288,7 +297,7 @@ nmap <Leader>b <Action>(ToggleLineBreakpoint)
 nmap <Leader>be <Action>(EditBreakpoint)
 nmap <Leader>c <Action>(GotoClass)
 nmap <Leader>d <Action>(QuickJavaDoc)
-"nmap <Leader>e <Action>(Run)
+nmap <Leader>e <Action>(ShowIntentionActions)
 nmap <Leader>ff <Action>(GotoFile)
 nmap <Leader>g <Action>(ManageRecentProjects)
 "nmap <Leader>gu <Action>(Vcs.RollbackChangedLines)
@@ -309,12 +318,12 @@ nmap <Leader>p <Action>(PasteMultiple)
 nmap <Leader>q <Action>(ChooseRunConfiguration)
 nmap <Leader>r <Action>(RenameElement)
 nmap <Leader>s <Action>(GotoSymbol)
-"map  <Leader>t <Action>(ExpressionTypeInfo)
+nmap  <Leader>t <Action>(NextWindow)
 "nmap <Leader>t <Action>(QuickImplementations)
 nmap <Leader>u <Action>(ShowUsages)
 "nmap <Leader>v <Action>(ViewBreakpoints)
 "nmap <Leader>vb <Action>(ShowNavBar)
-"nmap <Leader>w <Action>(Debug)
+nmap <Leader>w <Action>(SaveAll)
 map  <Leader>x <Action>(Refactorings.QuickListPopupAction)
 nmap <Leader>y <Action>(ShowErrorDescription)
 nmap <Leader>z <Action>(RenameFile)
@@ -370,11 +379,7 @@ nnoremap <C-A> gg<S-v>G
 " u/U feels more natural to me for undo/redo than u/C-r
 nmap U <C-r>
 
-" Keymaps to move lines of code up and down
-nmap <C-S-J> <Action>(MoveLineDown)
-nmap <C-S-K> <Action>(MoveLineUp)
-nmap <M-J> <Action>(MoveStatementDown)
-nmap <M-K> <Action>(MoveStatementUp)
+
 
 sethandler a:vim
 sethandler <C-C> a:ide  " Stop (execution)
