@@ -45,6 +45,12 @@ return {
   { import = "astrocommunity.editing-support.todo-comments-nvim", enabled = true },
   { import = "astrocommunity.editing-support.mini-splitjoin", enabled = true },
   { import = "astrocommunity.editing-support.multicursors-nvim", enabled = true },
+  -- fuzzy-finder
+  { import = "astrocommunity.fuzzy-finder.telescope-zoxide", enabled = true },
+  -- programming-language-support
+  { import = "astrocommunity.programming-language-support.csv-vim", enabled = true },
+  { import = "astrocommunity.programming-language-support.nvim-jqx", enabled = true },
+  { import = "astrocommunity.programming-language-support.rest-nvim", enabled = true },
   -- motions
   { import = "astrocommunity.motion.flash-nvim", enabled = true },
   { import = "astrocommunity.motion.harpoon", enabled = true },
