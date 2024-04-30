@@ -140,7 +140,7 @@ set incsearch hlsearch ignorecase smartcase gdefault
 set ideajoin                  " use the IDE's join/J behavior
 set selectmode=ideaselection  " use select mode only when IDE sets a selection
 set timeoutlen=1000           " timeout for keymappings
-set clipboard=unnamed,ideaput " use system clipboard with idea's pasting logic
+"set clipboard=unnamed,ideaput " use system clipboard with idea's pasting logic
 set scrolloff=1               " pad scrolling with one line
 set showmode                  " show current mode in statusbar
 set showcmd                   " show partial command in statusbar
@@ -154,8 +154,8 @@ nmap \| <Action>(MoveTabRight)
 nmap \\ <Action>(MoveTabDown)
 noremap <A-L> <C-W>l
 nnoremap <A-H> <C-W>h
-nnoremap <A-J> <C-W>j
-nnoremap <A-K> <C-W>k
+nnoremap <A-S-J> <C-W>j
+nnoremap <A-S-K> <C-W>k
 nmap <A-O> <Action>(MoveEditorToOppositeTabGroup)
 nmap <A-;> <Action>(Unsplit)
 nmap <A-C> <Action>(ChangeSplitOrientation)
@@ -170,8 +170,8 @@ nmap dw <Action>(EditorDeleteToWordEndInDifferentHumpsMode)
 " Keymaps to move lines of code up and down
 nmap <C-S-J> <Action>(MoveLineDown)
 nmap <C-S-K> <Action>(MoveLineUp)
-nmap <A-S-J> <Action>(MoveStatementDown)
-nmap <A-S-K> <Action>(MoveStatementUp)
+nmap <A-J> <Action>(MoveStatementDown)
+nmap <A-K> <Action>(MoveStatementUp)
 
 " Makes these easier to use.
 "noremap , :
