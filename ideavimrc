@@ -173,6 +173,10 @@ nmap <C-S-K> <Action>(MoveLineUp)
 nmap <A-J> <Action>(MoveStatementDown)
 nmap <A-K> <Action>(MoveStatementUp)
 
+nmap <Leader>la <Action>(ShowErrorDescription)
+nmap <Leader>ld <Action>(ShowIntentionActions)
+nmap <Leader>lr <Action>(RenameElement)
+
 " Makes these easier to use.
 "noremap , :
 "noremap : ;
