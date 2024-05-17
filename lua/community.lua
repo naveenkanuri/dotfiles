@@ -19,7 +19,7 @@ return {
   -- lsp
   -- { import = "astrocommunity.lsp.coc-nvim", enabled = true },
   { import = "astrocommunity.lsp.actions-preview-nvim", enabled = true },
-  { import = "astrocommunity.lsp.delimited-nvim", enabled = true },
+  { import = "astrocommunity.lsp.delimited-nvim", enabled = false },
   { import = "astrocommunity.lsp.garbage-day-nvim", enabled = true },
   { import = "astrocommunity.lsp.lsp-lens-nvim", enabled = true },
   { import = "astrocommunity.lsp.lsp-signature-nvim", enabled = true },
