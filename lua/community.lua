@@ -24,11 +24,12 @@ return {
   { import = "astrocommunity.lsp.lsp-lens-nvim", enabled = true },
   { import = "astrocommunity.lsp.lsp-signature-nvim", enabled = true },
   { import = "astrocommunity.lsp.lsplinks-nvim", enabled = true },
+  { import = "astrocommunity.lsp.lspsaga-nvim", enabled = true },
   -- git
   { import = "astrocommunity.git.blame-nvim", enabled = true },
   { import = "astrocommunity.git.diffview-nvim", enabled = true },
   -- bars-and-lines
-  { import = "astrocommunity.bars-and-lines.smartcolumn-nvim" },
+  { import = "astrocommunity.bars-and-lines.smartcolumn-nvim", enabled = false },
   { import = "astrocommunity.bars-and-lines.dropbar-nvim", enabled = false },
   -- code-runner
   { import = "astrocommunity.code-runner.compiler-nvim", enabled = true },
@@ -112,13 +113,6 @@ return {
           dismiss = "<C/>",
         },
       },
-    },
-  },
-  {
-    "m4xshen/smartcolumn.nvim",
-    opts = {
-      colorcolumn = 120,
-      disabled_filetypes = { "help" },
     },
   },
   {
