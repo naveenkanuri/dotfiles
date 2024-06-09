@@ -74,6 +74,8 @@ return {
   { import = "astrocommunity.test.nvim-coverage", enabled = true },
   -- workflow
   { import = "astrocommunity.workflow.hardtime-nvim", enabled = false },
+  -- file-explorer
+  { import = "astrocommunity.file-explorer.oil-nvim", enabled = true },
   -- bars-and-lines
   { import = "astrocommunity.bars-and-lines.vim-illuminate", enabled = true },
   -- comment
