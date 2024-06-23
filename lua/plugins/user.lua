@@ -80,4 +80,14 @@ return {
       )
     end,
   },
+  {
+    "nvimdev/lspsaga.nvim",
+    opts = {
+      finder = {
+        keys = {
+          toggle_or_open = "<CR>",
+        },
+      },
+    },
+  },
 }
