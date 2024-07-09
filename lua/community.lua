@@ -51,7 +51,7 @@ return {
   -- programming-language-support
   { import = "astrocommunity.programming-language-support.csv-vim", enabled = true },
   { import = "astrocommunity.programming-language-support.nvim-jqx", enabled = true },
-  { import = "astrocommunity.programming-language-support.rest-nvim", enabled = true },
+  { import = "astrocommunity.programming-language-support.rest-nvim", enabled = false },
   -- motions
   { import = "astrocommunity.motion.flash-nvim", enabled = true },
   { import = "astrocommunity.motion.harpoon", enabled = true },
