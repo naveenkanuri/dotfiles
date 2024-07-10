@@ -165,4 +165,12 @@ return {
       skipInsignificantPunctuation = false,
     },
   },
+  {
+    "andythigpen/nvim-coverage",
+    keys = {
+      { "<leader>Tl", "<cmd>CoverageLoad<cr>", desc = "Load coverage" },
+      { "<leader>Ts", "<cmd>CoverageSummary<cr>", desc = "Show coverage summary" },
+      { "<leader>Tj", "<cmd>CoverageToggle<cr>", desc = "Toggle coverage Display" },
+    },
+  },
 }
