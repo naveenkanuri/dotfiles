@@ -170,6 +170,7 @@ return {
     keys = {
       { "<leader>tl", "<cmd>CoverageLoad<cr>", desc = "Load coverage" },
       { "<leader>tj", "<cmd>CoverageToggle<cr>", desc = "Toggle coverage Display" },
+      { "<leader>ts", "<cmd>CoverageSummary<cr>", desc = "Toggle coverage Summary" },
     },
   },
 }
