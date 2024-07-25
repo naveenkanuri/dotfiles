@@ -5,6 +5,8 @@
 -- NOTE: We highly recommend setting up the Lua Language Server (`:LspInstall lua_ls`)
 --       as this provides autocomplete and documentation while editing
 
+local prefix = "<Leader>t"
+
 ---@type LazySpec
 return {
   "AstroNvim/astrocore",
@@ -80,6 +82,20 @@ return {
         -- tables with just a `desc` key will be registered with which-key if it's installed
         -- this is useful for naming menus
         ["<Leader>b"] = { desc = "Buffers" },
+
+        [prefix .. "t"] = { function() require("neotest").run.run() end, desc = "Run test" },
+        [prefix .. "d"] = { function() require("neotest").run.run { strategy = "dap" } end, desc = "Debug test" },
+        [prefix .. "f"] = {
+          function() require("neotest").run.run(vim.fn.expand "%") end,
+          desc = "Run all tests in file",
+        },
+        [prefix .. "p"] = {
+          function() require("neotest").run.run(vim.fn.getcwd()) end,
+          desc = "Run all tests in project",
+        },
+        [prefix .. "<CR>"] = { function() require("neotest").summary.toggle() end, desc = "Test Summary" },
+        [prefix .. "o"] = { function() require("neotest").output.open() end, desc = "Output hover" },
+        [prefix .. "O"] = { function() require("neotest").output_panel.toggle() end, desc = "Output window" },
         -- quick save
         -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
       },
