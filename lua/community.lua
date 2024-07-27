@@ -85,6 +85,8 @@ return {
   -- color
   { import = "astrocommunity.color.headlines-nvim", enabled = true },
   { import = "astrocommunity.color.modes-nvim", enabled = true },
+  -- terminal-integration
+  { import = "astrocommunity.terminal-integration.vim-tmux-navigator", enabled = true },
   { -- further customize the options set by the community
     "catppuccin",
     opts = {
