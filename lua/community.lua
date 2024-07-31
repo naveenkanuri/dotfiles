@@ -36,8 +36,8 @@ return {
   -- completion
   { import = "astrocommunity.completion.copilot-lua" },
   -- colorschemes
-  { import = "astrocommunity.colorscheme.everforest", enabled = true },
-  { import = "astrocommunity.colorscheme.catppuccin", enabled = false },
+  { import = "astrocommunity.colorscheme.everforest", enabled = false },
+  { import = "astrocommunity.colorscheme.catppuccin", enabled = true },
   -- editing-support
   { import = "astrocommunity.editing-support.treesj" },
   { import = "astrocommunity.editing-support.zen-mode-nvim" },
