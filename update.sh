@@ -19,4 +19,12 @@ git -C $HOME/.config/nvim pull
 echo "udpating rust...."
 rustup update
 
+cp ./update.sh $HOME/Documents/update.sh
+chmod +x $HOME/Documents/update.sh
+
+cp ./.tmux.conf $HOME/.config/tmux/tmux.conf
+
+cp ./ideavimrc $HOME/.ideavimrc
+cp ./alacritty.toml $HOME/.config/alacritty/alacritty.toml
+
 echo "done...."
