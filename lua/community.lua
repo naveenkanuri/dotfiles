@@ -28,6 +28,7 @@ return {
   -- git
   { import = "astrocommunity.git.blame-nvim", enabled = true },
   { import = "astrocommunity.git.diffview-nvim", enabled = true },
+  { import = "astrocommunity.git.gitgraph-nvim", enabled = true },
   -- bars-and-lines
   { import = "astrocommunity.bars-and-lines.smartcolumn-nvim", enabled = false },
   { import = "astrocommunity.bars-and-lines.dropbar-nvim", enabled = false },
