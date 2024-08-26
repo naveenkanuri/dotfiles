@@ -46,6 +46,9 @@ return {
   { import = "astrocommunity.editing-support.todo-comments-nvim", enabled = true },
   { import = "astrocommunity.editing-support.mini-splitjoin", enabled = true },
   { import = "astrocommunity.editing-support.multicursors-nvim", enabled = true },
+  { import = "astrocommunity.editing-support.undotree", enabled = true },
+  { import = "astrocommunity.editing-support.nvim-treesitter-context", enabled = true },
+  { import = "astrocommunity.editing-support.refactoring-nvim", enabled = true },
   -- fuzzy-finder
   { import = "astrocommunity.fuzzy-finder.telescope-zoxide", enabled = true },
   -- programming-language-support
@@ -173,6 +176,24 @@ return {
       { "<leader>tl", "<cmd>CoverageLoad<cr>", desc = "Load coverage" },
       { "<leader>tj", "<cmd>CoverageToggle<cr>", desc = "Toggle coverage Display" },
       { "<leader>ts", "<cmd>CoverageSummary<cr>", desc = "Toggle coverage Summary" },
+    },
+  },
+  {
+    "ThePrimeagen/refactoring.nvim",
+    opts = {
+      prompt_func_return_type = {
+        go = true,
+        cpp = true,
+        c = true,
+        java = true,
+      },
+      -- prompt for function parameters
+      prompt_func_param_type = {
+        go = true,
+        cpp = true,
+        c = true,
+        java = true,
+      },
     },
   },
 }
