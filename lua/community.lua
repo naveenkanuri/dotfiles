@@ -15,6 +15,7 @@ return {
   { import = "astrocommunity.pack.cpp" },
   { import = "astrocommunity.pack.bash" },
   { import = "astrocommunity.pack.java" },
+  { import = "astrocommunity.pack.helm" },
   { import = "astrocommunity.pack.zig" },
   -- lsp
   -- { import = "astrocommunity.lsp.coc-nvim", enabled = true },
