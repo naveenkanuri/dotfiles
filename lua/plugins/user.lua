@@ -90,4 +90,17 @@ return {
       },
     },
   },
+  {
+    "MeanderingProgrammer/render-markdown.nvim",
+    opts = {
+      checkbox = {
+        custom = {
+          error = { raw = "[~]", rendered = "  ", highlight = "RenderMarkdownError" },
+          followup = { raw = "[>]", rendered = "  ", highlight = "RenderMarkdownHint" },
+          important = { raw = "[!]", rendered = " ", highlight = "RenderMarkdownWarn" },
+        },
+      },
+    },
+    dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" }, -- if you prefer nvim-web-devicons
+  },
 }
