@@ -203,6 +203,17 @@ alt-shift-j = ['join-with down', 'mode main']
 alt-shift-k = ['join-with up', 'mode main']
 alt-shift-l = ['join-with right', 'mode main']
 
+[workspace-to-monitor-force-assignment]
+A = 'Studio Display'
+D = 'Studio Display'
+S = 'Studio Display'
+B = 'LS34A650U'
+E = 'LS34A650U'
+G = 'LS34A650U'
+Z = 'LS34A650U'
+C = 'LS34A650U'
+F = 'LS34A650U'
+
 [[on-window-detected]]
 if.app-id = 'org.mozilla.firefox'
 run = "move-node-to-workspace B"
@@ -244,8 +255,12 @@ if.app-id = 'org.jkiss.dbeaver.core.product'
 run = "move-node-to-workspace D"
 
 [[on-window-detected]]
+if.app-id = 'com.oracle.java.11.0.21.0.2.java'
+run = "move-node-to-workspace D"
+
+[[on-window-detected]]
 if.app-id = 'com.postmanlabs.mac'
-run = "move-node-to-workspace P"
+run = "move-node-to-workspace E"
 
 [[on-window-detected]]
 if.app-id = 'md.obsidian'
