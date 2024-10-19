@@ -17,6 +17,7 @@ return {
   { import = "astrocommunity.pack.java" },
   { import = "astrocommunity.pack.helm" },
   { import = "astrocommunity.pack.zig" },
+  -- { import = "astrocommunity.pack.sql" },
   -- lsp
   -- { import = "astrocommunity.lsp.coc-nvim", enabled = true },
   { import = "astrocommunity.lsp.actions-preview-nvim", enabled = true },
@@ -36,7 +37,7 @@ return {
   -- code-runner
   { import = "astrocommunity.code-runner.compiler-nvim", enabled = true },
   -- completion
-  { import = "astrocommunity.completion.copilot-lua" },
+  -- { import = "astrocommunity.completion.copilot-lua" },
   -- colorschemes
   { import = "astrocommunity.colorscheme.everforest", enabled = false },
   { import = "astrocommunity.colorscheme.catppuccin", enabled = true },
@@ -109,21 +110,21 @@ return {
       },
     },
   },
-  { -- further customize the options set by the community
-    "zbirenbaum/copilot.lua",
-    opts = {
-      suggestion = {
-        keymap = {
-          accept = "<C-l>",
-          accept_word = false,
-          accept_line = false,
-          next = "<C-.>",
-          prev = "<C-,>",
-          dismiss = "<C/>",
-        },
-      },
-    },
-  },
+  -- { -- further customize the options set by the community
+  --   "zbirenbaum/copilot.lua",
+  --   opts = {
+  --     suggestion = {
+  --       keymap = {
+  --         accept = "<C-l>",
+  --         accept_word = false,
+  --         accept_line = false,
+  --         next = "<C-.>",
+  --         prev = "<C-,>",
+  --         dismiss = "<C/>",
+  --       },
+  --     },
+  --   },
+  -- },
   {
     "Wansmer/treesj",
     keys = { { "<leader>J", "<CMD>TSJToggle<CR>", desc = "Toggle Treesitter Toggle" } },
