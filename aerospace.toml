@@ -207,10 +207,10 @@ alt-shift-l = ['join-with right', 'mode main']
 A = 'Studio Display'
 D = 'Studio Display'
 S = 'Studio Display'
-B = 'LS34A650U'
-E = 'LS34A650U'
+B = 'Studio Display'
+E = 'Studio Display'
+Z = 'Studio Display'
 G = 'LS34A650U'
-Z = 'LS34A650U'
 C = 'LS34A650U'
 F = 'LS34A650U'
 
