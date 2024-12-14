@@ -140,7 +140,7 @@ set incsearch hlsearch ignorecase smartcase gdefault
 set ideajoin                  " use the IDE's join/J behavior
 set selectmode=ideaselection  " use select mode only when IDE sets a selection
 set timeoutlen=1000           " timeout for keymappings
-"set clipboard=unnamed,ideaput " use system clipboard with idea's pasting logic
+set clipboard=unnamed,ideaput " use system clipboard with idea's pasting logic
 set scrolloff=1               " pad scrolling with one line
 set showmode                  " show current mode in statusbar
 set showcmd                   " show partial command in statusbar
