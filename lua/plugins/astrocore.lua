@@ -62,6 +62,7 @@ return {
         --   function() require("astrocore.buffer").nav(-(vim.v.count > 0 and vim.v.count or 1)) end,
         --   desc = "Previous buffer",
         -- },
+        ["<Leader>o"] = { function() require("oil").open() end, desc = "Open folder in Oil" },
         ["<M-h>"] = { "<C-w>h", desc = "Move to left window" },
         ["<M-l>"] = { "<C-w>l", desc = "Move to right window" },
         ["gP"] = { function() require("gitsigns").prev_hunk() end, desc = "Previous Git hunk" },
