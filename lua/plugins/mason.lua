@@ -35,6 +35,9 @@ return {
 
         -- Zig
         "zls", -- Zig
+
+        -- Dockerfile
+        "dockerls",
         -- add more arguments for adding more language servers
       })
     end,
@@ -52,6 +55,7 @@ return {
         "markdownlint", -- linter for Markdown
         "jsonlint", -- linter for JSON
         "misspell", -- spell checker for plaintext/code comments
+        "checkmake", -- for Makefiles
 
         -- Golang
         "golangci-lint", -- linter for Go
@@ -77,6 +81,9 @@ return {
 
         -- Zig
         "zigfmt", -- Zig formatter
+
+        -- docker
+        "hadolint",
         -- add more arguments for adding more null-ls sources
       })
     end,
