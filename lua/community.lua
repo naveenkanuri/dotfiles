@@ -127,10 +127,10 @@ return {
   --     },
   --   },
   -- },
-  {
-    "Wansmer/treesj",
-    keys = { { "<leader>J", "<CMD>TSJToggle<CR>", desc = "Toggle Treesitter Toggle" } },
-  },
+  -- {
+  --   "Wansmer/treesj",
+  --   keys = { { "<leader>J", "<CMD>TSJToggle<CR>", desc = "Toggle Treesitter Toggle" } },
+  -- },
   {
     "folke/todo-comments.nvim",
     keys = {
@@ -140,12 +140,12 @@ return {
       { "<leader>xt", "<CMD>TodoTrouble<CR>", desc = "Open Telescope trouble" },
     },
   },
-  {
-    "smoka7/multicursors.nvim",
-    keys = {
-      { mode = { "v", "n" }, "<Leader>m", "<cmd>MCstart<cr>", desc = "Create a selection for word under the cursor" },
-    },
-  },
+  -- {
+  --   "smoka7/multicursors.nvim",
+  --   keys = {
+  --     { mode = { "v", "n" }, "<Leader>m", "<cmd>MCstart<cr>", desc = "Create a selection for word under the cursor" },
+  --   },
+  -- },
   {
     "Zeioth/compiler.nvim",
     keys = {
