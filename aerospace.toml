@@ -223,6 +223,10 @@ if.app-id = 'org.alacritty'
 run = "move-node-to-workspace A"
 
 [[on-window-detected]]
+if.app-id = 'com.mitchellh.ghostty'
+run = "move-node-to-workspace A"
+
+[[on-window-detected]]
 if.app-id = 'com.tinyspeck.slackmacgap'
 run = "move-node-to-workspace S"
 
@@ -265,3 +269,7 @@ run = "move-node-to-workspace E"
 [[on-window-detected]]
 if.app-id = 'md.obsidian'
 run = "move-node-to-workspace O"
+
+[[on-window-detected]]
+if.app-id = 'com.microsoft.Outlook'
+run = "move-node-to-workspace W"
