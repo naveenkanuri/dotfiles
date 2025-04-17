@@ -27,5 +27,6 @@ cp ./.tmux.conf $HOME/.config/tmux/tmux.conf
 cp ./ideavimrc $HOME/.ideavimrc
 cp ./alacritty.toml $HOME/.config/alacritty/alacritty.toml
 cp ./aerospace.toml $HOME/.config/aerospace/aerospace.toml
+cp ./ghostty-config $HOME/.config/ghostty/config
 
 echo "done...."
