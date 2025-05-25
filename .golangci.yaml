@@ -1,0 +1,176 @@
+
+version: "2"
+
+linters:
+  default: none
+  enable:
+    - errcheck           # unchecked errors
+    - ineffassign        # unused assignments
+    - govet              # vet analyzers
+    - staticcheck        # includes gosimple & stylecheck
+    - unused             # unused code
+    - asciicheck         # non-ASCII identifiers
+    - bidichk            # dangerous unicode sequences
+    - bodyclose          # HTTP response bodies
+    - cyclop             # cyclomatic complexity
+    - durationcheck      # duration multiplications
+    - errorlint          # error wrapping
+    - exhaustive         # enum switch exhaustiveness
+    - forbidigo          # forbid patterns
+    - funlen             # function length
+    - gochecknoinits     # no init funcs
+    - goconst            # repeated strings
+    - gocritic           # various bug/style checks
+    - gocyclo            # cyclomatic complexity metric
+    - mnd                # magic numbers (renamed from gomnd)
+    - gomodguard         # module guard
+    - goprintffuncname   # printf-like naming
+    - gosec              # security checks
+    - lll                # long lines
+    - makezero           # zero-length slices
+    - musttag            # struct tag enforcement
+    - nakedret           # naked returns
+    - nestif             # nested if statements
+    - nilerr             # nil error misuse
+    - noctx              # missing context.Context
+    - nolintlint         # nolint directive validation
+    - nonamedreturns     # named returns
+    - nosprintfhostport  # host:port via Sprintf
+    - promlinter         # Prometheus naming
+    - revive             # fast, configurable linter
+    - rowserrcheck       # sql.Rows error checks
+    - sqlclosecheck      # sql.Rows & sql.Stmt close
+    - tparallel          # t.Parallel() usage
+    - unconvert          # unnecessary conversions
+    - unparam            # unused parameters
+    - wastedassign       # wasted assignments
+    - whitespace         # trailing whitespace
+
+  settings:
+    cyclop:
+      max-complexity: 30
+      package-average: 10.0
+
+    errcheck:
+      check-type-assertions: true
+
+    exhaustive:
+      check:
+        - switch
+        - map
+
+    exhaustruct:
+      exclude:
+        - "^net/http.Client$"
+        - "^net/http.Cookie$"
+        - "^net/http.Request$"
+        - "^net/http.Response$"
+        - "^net/http.Server$"
+        - "^net/http.Transport$"
+        - "^net/url.URL$"
+        - "^os/exec.Cmd$"
+        - "^reflect.StructField$"
+        - "^github.com/Shopify/sarama.Config$"
+        - "^github.com/Shopify/sarama.ProducerMessage$"
+        - "^github.com/mitchellh/mapstructure.DecoderConfig$"
+        - "^github.com/prometheus/client_golang/.+Opts$"
+        - "^github.com/spf13/cobra.Command$"
+        - "^github.com/spf13/cobra.CompletionOptions$"
+        - "^golang.org/x/tools/go/analysis.Analyzer$"
+        - "^google.golang.org/protobuf/.+Options$"
+        - "^gopkg.in/yaml.v3.Node$"
+
+    lll:
+      line-length: 180
+      tab-width: 1
+
+    funlen:
+      lines: 100
+      statements: 50
+
+    gocognit:
+      min-complexity: 20
+
+    gocritic:
+      settings:
+        captLocal:
+          paramsOnly: false
+        underef:
+          skipRecvDeref: false
+
+    mnd:
+      ignored-functions:
+        - os.Chmod
+        - os.Mkdir
+        - os.MkdirAll
+        - os.OpenFile
+        - os.WriteFile
+        - prometheus.ExponentialBuckets
+        - prometheus.ExponentialBucketsRange
+        - prometheus.LinearBuckets
+
+    gomodguard:
+      blocked:
+        modules:
+          - github.com/gofrs/uuid:
+              recommendations:
+                - github.com/google/uuid
+              reason: "gofrs' package is not go module"
+
+    govet:
+      enable-all: true
+      disable:
+        - fieldalignment
+        - shadow
+
+    nakedret:
+      max-func-lines: 0
+
+    nolintlint:
+      allow-no-explanation:
+        - funlen
+        - gocognit
+        - lll
+      require-explanation: false
+      require-specific: true
+
+    rowserrcheck:
+      packages:
+        - github.com/jmoiron/sqlx
+
+  exclusions:
+    rules:
+      - linters:
+          - lll
+        source: "^//\\s*go:generate\\s"  
+      - linters:
+        - godot
+        source: "(noinspection|TODO)"
+      - linters:
+          - gocritic
+        source: "//noinspection"
+      # - linters:
+      #     - errorlint
+      #   source: "^\\s+if _, ok := err\\.\\([^.]+\\.InternalError\\); ok \\{$"
+      - linters:
+          - bodyclose
+          - dupl
+          - funlen
+          - goconst
+          - gosec
+          - noctx
+          - wrapcheck
+          - lll
+          - revive
+          - gocritic
+          - whitespace
+          - stylecheck
+        path: "_test\\.go"
+
+formatters:
+  enable:
+    - goimports
+    # - gofumpt
+
+issues:
+  max-same-issues: 50

@@ -1,3 +1,5 @@
+-- if true then return {} end -- WARN: REMOVE THIS LINE TO ACTIVATE THIS FILE
+
 -- AstroCommunity: import any community modules here
 -- We import this file in `lazy_setup.lua` before the `plugins/` folder.
 -- This guarantees that the specs are processed before any user plugins.
@@ -5,9 +7,9 @@
 ---@type LazySpec
 return {
   "AstroNvim/astrocommunity",
-  -- import/override with your plugins folder
+
   { import = "astrocommunity.pack.rust" },
-  { import = "astrocommunity.pack.go" },
+  { import = "astrocommunity.pack.golangci-lint" },
   { import = "astrocommunity.pack.lua" },
   { import = "astrocommunity.pack.yaml" },
   { import = "astrocommunity.pack.markdown" },
@@ -205,6 +207,22 @@ return {
     "epwalsh/obsidian.nvim",
     opts = {
       ui = { enable = false },
+    },
+  },
+  {
+    "mfussenegger/nvim-jdtls",
+    opts = {
+      settings = {
+        java = {
+          format = {
+            enabled = true,
+            settings = { -- you can use your preferred format style
+              url = "https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml",
+              profile = "GoogleStyle",
+            },
+          },
+        },
+      },
     },
   },
 }
