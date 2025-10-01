@@ -37,3 +37,4 @@ macos-titlebar-style = hidden
 macos-titlebar-proxy-icon = hidden
 font-thicken = true
 font-thicken-strength = 10
+keybind = shift+enter=text:\x1b\r
