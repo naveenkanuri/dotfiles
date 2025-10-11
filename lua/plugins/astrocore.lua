@@ -21,9 +21,9 @@ return {
     },
     -- Diagnostics configuration (for vim.diagnostics.config({...})) when diagnostics are on
     diagnostics = {
-      virtual_text = true,
+      virtual_text = false, -- Disable end-of-line hints to avoid duplicates
       virtual_lines = {
-        current_line = true,
+        current_line = true, -- Show full diagnostics below current line only
       },
       underline = true,
     },

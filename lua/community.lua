@@ -21,12 +21,8 @@ return {
 
   -- LSP: Reduce to essential plugins only
   { import = "astrocommunity.lsp.actions-preview-nvim", enabled = true },
-  -- DISABLED for performance: lsp-lens, lsp-signature, lspsaga
   { import = "astrocommunity.lsp.garbage-day-nvim", enabled = true }, -- This helps with memory
-  -- { import = "astrocommunity.lsp.lsp-lens-nvim", enabled = false }, -- Resource heavy
-  -- { import = "astrocommunity.lsp.lsp-signature-nvim", enabled = false }, -- Conflicts with gopls
-  -- { import = "astrocommunity.lsp.lsplinks-nvim", enabled = false }, -- Not essential
-  { import = "astrocommunity.lsp.lspsaga-nvim", enabled = false }, -- Resource heavy
+  -- DISABLED for performance: lsp-lens, lsp-signature, lspsaga (removed entirely)
 
   -- Git (keep these - they don't interfere with LSP)
   { import = "astrocommunity.git.blame-nvim", enabled = true },

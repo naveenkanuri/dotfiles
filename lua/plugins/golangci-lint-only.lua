@@ -72,6 +72,10 @@ return {
             vim.opt_local.foldmethod = "manual"
             vim.opt_local.spell = false
 
+            -- Hide lightbulb in sign column (keep marks visible)
+            -- Virtual text indicator at end of line still works
+            vim.fn.sign_define("SagaLightBulb", { text = "", texthl = "" })
+
             -- For large files, disable more features
             local line_count = vim.api.nvim_buf_line_count(0)
             if line_count > 1000 then
