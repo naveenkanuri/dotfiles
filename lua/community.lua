@@ -22,6 +22,18 @@ return {
   -- LSP: Reduce to essential plugins only
   { import = "astrocommunity.lsp.actions-preview-nvim", enabled = true },
   { import = "astrocommunity.lsp.garbage-day-nvim", enabled = true }, -- This helps with memory
+
+  -- Configure garbage-day: exclude critical LSP servers (M3 Pro with 48GB can handle it)
+  {
+    "Zeioth/garbage-day.nvim",
+    opts = {
+      excluded_lsp_clients = {
+        "rust_analyzer", -- Rust needs persistent LSP for indexing
+        "gopls",         -- Go is your primary language, keep it alive
+      },
+    },
+  },
+
   -- DISABLED for performance: lsp-lens, lsp-signature, lspsaga (removed entirely)
 
   -- Git (keep these - they don't interfere with LSP)
