@@ -5,7 +5,7 @@
 ---@type LazySpec
 return {
   {
-    "kndndrj/nvim-dbee",
+    "naveenkanuri/nvim-dbee",
     dependencies = {
       "MunifTanjim/nui.nvim",
       {

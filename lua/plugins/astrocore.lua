@@ -63,6 +63,12 @@ return {
       n = {
         -- second key is the lefthand side of the map
 
+        -- override default grep to be git-aware (use <Leader>fW for all files)
+        ["<Leader>fw"] = {
+          function() require("snacks").picker.git_grep() end,
+          desc = "Find words (git)",
+        },
+
         -- navigate buffer tabs
         ["<Leader>o"] = { function() require("oil").open() end, desc = "Open folder in Oil" },
         ["gP"] = { function() require("gitsigns").nav_hunk "prev" end, desc = "Previous Git hunk" },
