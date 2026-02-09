@@ -142,7 +142,7 @@ return {
 
       opts.mappings = opts.mappings or {}
       opts.mappings.n = opts.mappings.n or {}
-      opts.mappings.n["<Leader>gld"] = { "<Cmd>GoLintDebug<CR>", desc = "Debug Go LSP" }
+      opts.mappings.n["<Leader>gD"] = { "<Cmd>GoLintDebug<CR>", desc = "Debug Go LSP" }
 
       return opts
     end,
