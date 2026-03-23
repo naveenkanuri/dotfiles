@@ -2,6 +2,14 @@
 -- This is just pure lua so anything that doesn't
 -- fit in the normal config locations above can go here
 
+-- Suppress noisy "[LSP] Client not attached to buffer" warnings
+-- from semantic_tokens when DAP UI buffers are opened
+local original_notify = vim.notify
+vim.notify = function(msg, level, opts)
+  if type(msg) == "string" and msg:match "%[LSP%] Client with id %d+ not attached to buffer" then return end
+  original_notify(msg, level, opts)
+end
+
 -- Enhanced Mark Persistence for Large Codebases
 -- Increase shada limits to keep marks across 1000 files (default is only 100)
 vim.opt.shada = {
