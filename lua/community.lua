@@ -47,6 +47,9 @@ return {
   -- Code runner
   { import = "astrocommunity.code-runner.compiler-nvim", enabled = true },
 
+  -- AI
+  { import = "astrocommunity.ai.codecompanion-nvim", enabled = true },
+
   -- Colorschemes
   { import = "astrocommunity.colorscheme.catppuccin", enabled = true },
 
