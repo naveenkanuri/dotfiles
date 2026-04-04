@@ -41,9 +41,6 @@ return {
   { import = "astrocommunity.git.diffview-nvim", enabled = true },
   { import = "astrocommunity.git.gitgraph-nvim", enabled = true },
 
-  -- Bars and lines (minimal)
-  { import = "astrocommunity.bars-and-lines.vim-illuminate", enabled = true },
-
   -- Code runner
   { import = "astrocommunity.code-runner.compiler-nvim", enabled = true },
 
@@ -54,8 +51,6 @@ return {
   { import = "astrocommunity.colorscheme.catppuccin", enabled = true },
 
   -- Editing support (reduced set)
-  { import = "astrocommunity.editing-support.zen-mode-nvim" },
-  { import = "astrocommunity.editing-support.telescope-undo-nvim" },
   { import = "astrocommunity.editing-support.rainbow-delimiters-nvim", enabled = true },
   { import = "astrocommunity.editing-support.todo-comments-nvim", enabled = true },
   { import = "astrocommunity.editing-support.undotree", enabled = true },
@@ -89,9 +84,6 @@ return {
 
   -- File explorer
   { import = "astrocommunity.file-explorer.oil-nvim", enabled = true },
-
-  -- Comment
-  { import = "astrocommunity.comment.mini-comment", enabled = true },
 
   -- Scrolling
   -- { import = "astrocommunity.scrolling.mini-animate", enabled = true },

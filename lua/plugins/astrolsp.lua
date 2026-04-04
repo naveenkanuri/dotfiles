@@ -12,7 +12,7 @@ return {
   opts = {
     -- Configuration table of features provided by AstroLSP
     features = {
-      codelens = true, -- enable/disable codelens refresh on start
+      codelens = false, -- disabled until Neovim 0.12.1 fixes codelens bug
       inlay_hints = false, -- enable/disable inlay hints on start
       semantic_tokens = true, -- enable/disable semantic token highlighting
     },
@@ -55,40 +55,13 @@ return {
       -- rust_analyzer = false, -- setting a handler to false will disable the set up of that language server
       -- pyright = function(_, opts) require("lspconfig").pyright.setup(opts) end -- or a custom handler function can be passed
     },
-    -- Configure buffer local auto commands to add when attaching a language server
-    autocmds = {
-      -- first key is the `augroup` to add the auto commands to (:h augroup)
-      lsp_codelens_refresh = {
-        -- Optional condition to create/delete auto command group
-        -- can either be a string of a client capability or a function of `fun(client, bufnr): boolean`
-        -- condition will be resolved for each client on each execution and if it ever fails for all clients,
-        -- the auto commands will be deleted for that buffer
-        cond = "textDocument/codeLens",
-        -- cond = function(client, bufnr) return client.name == "lua_ls" end,
-        -- list of auto commands to set
-        {
-          -- events to trigger
-          event = { "InsertLeave", "BufEnter" },
-          -- the rest of the autocmd options (:h nvim_create_autocmd)
-          desc = "Refresh codelens (buffer)",
-          callback = function(args)
-            if
-              require("astrolsp").config.features.codelens
-              and #vim.lsp.get_clients { bufnr = args.buf, method = "textDocument/codeLens" } > 0
-            then
-              vim.lsp.codelens.refresh { bufnr = args.buf }
-            end
-          end,
-        },
-      },
-    },
     -- mappings to be set up on attaching of a language server
     mappings = {
       n = {
         gl = { function() vim.diagnostic.open_float() end, desc = "Hover diagnostics" },
 
-        gp = { function() vim.diagnostic.goto_prev() end, desc = "Previous diagnostic" },
-        gn = { function() vim.diagnostic.goto_next() end, desc = "Next diagnostic" },
+        gp = { function() vim.diagnostic.jump { count = -1 } end, desc = "Previous diagnostic" },
+        gn = { function() vim.diagnostic.jump { count = 1 } end, desc = "Next diagnostic" },
         -- a `cond` key can provided as the string of a server capability to be required to attach, or a function with `client` and `bufnr` parameters from the `on_attach` that returns a boolean
         gD = {
           function() vim.lsp.buf.declaration() end,
