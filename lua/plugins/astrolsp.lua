@@ -4,9 +4,9 @@ return {
   ---@type AstroLSPOpts
   opts = {
     features = {
-      codelens = false, -- disabled until Neovim 0.12.1 fixes codelens bug
-      inlay_hints = false,
-      semantic_tokens = true,
+      codelens = true, -- enable/disable codelens refresh on start
+      inlay_hints = false, -- enable/disable inlay hints on start
+      semantic_tokens = true, -- enable/disable semantic token highlighting
     },
     formatting = {
       format_on_save = {

@@ -21,7 +21,6 @@ return {
     cmd = { "Dbee" },
     keys = {
       { "<leader>ee", "<cmd>Dbee toggle<cr>", desc = "Toggle Dbee" },
-      { "<leader>eo", "<cmd>Dbee open<cr>", desc = "Open Dbee" },
       { "<leader>ef", function() require("dbee").pick_notes() end, desc = "Dbee Notes" },
       { "<leader>ec", function() require("dbee").pick_connections() end, desc = "Dbee Connections" },
       { "<leader>eh", function() require("dbee").pick_history() end, desc = "Dbee History" },
@@ -34,6 +33,19 @@ return {
         },
         result = {
           page_size = 100,
+        },
+        drawer = {
+          wizard = {
+            defaults = {
+              oracle_cloud_wallet = {
+                -- Oracle driver requires the EXTRACTED wallet directory, not the .zip.
+                -- Unzip Wallet_SPSDB.zip before first connect:
+                --   unzip ~/Downloads/Wallet_SPSDB.zip -d ~/Downloads/Wallet_SPSDB
+                wallet_path = "~/Downloads/Wallet_SPSDB",
+                service_alias = "spsdb_low",
+              },
+            },
+          },
         },
         window_layout = require("dbee.layouts").Minimal:new {
           result_height_pct = 0.3,
