@@ -2,7 +2,7 @@ return {
   {
     "NStefan002/screenkey.nvim",
     version = "*", -- keep on a tagged release
-    lazy = false, -- loads itself lazily when first used; explicit false is fine
+    cmd = "Screenkey",
     opts = {
       -- Position the overlay in the bottom-right
       win_opts = {

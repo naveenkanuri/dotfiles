@@ -1,4 +1,3 @@
--- Optimized community.lua - Replace your current community.lua with this
 -- Performance-focused: Remove redundant LSP plugins that conflict with gopls
 
 ---@type LazySpec

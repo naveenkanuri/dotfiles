@@ -107,9 +107,10 @@ end
 local function available_adapters()
   local config = require("codecompanion.config")
   local items = {}
+  local acp_adapters = config.adapters and config.adapters.acp or {}
 
   for _, adapter in ipairs(ADAPTERS) do
-    if config.adapters.acp[adapter.name] then table.insert(items, adapter) end
+    if acp_adapters[adapter.name] then table.insert(items, adapter) end
   end
 
   return items
@@ -177,7 +178,11 @@ local function make_connection(adapter_name, repo_root)
   local ok_adapter, adapter = pcall(require("codecompanion.adapters").resolve, adapter_name)
   if not ok_adapter then return nil, adapter end
 
-  local connection = require("codecompanion.acp").new { adapter = adapter }
+  local ok_connection, connection = pcall(function()
+    return require("codecompanion.acp").new { adapter = adapter }
+  end)
+  if not ok_connection then return nil, connection end
+
   local ok_connect, connect_result = pcall(function()
     return with_cwd(repo_root, function()
       return connection:connect_and_authenticate()
@@ -185,7 +190,7 @@ local function make_connection(adapter_name, repo_root)
   end)
 
   if not ok_connect or not connect_result then
-    pcall(connection.disconnect, connection)
+    if type(connection.disconnect) == "function" then pcall(connection.disconnect, connection) end
     return nil, ok_connect and "Failed to connect to the ACP agent" or connect_result
   end
 
@@ -200,7 +205,7 @@ local function fetch_sessions(adapter_name, repo_root)
   local supports_list = connection:can_list_sessions()
 
   if not supports_load then
-    pcall(connection.disconnect, connection)
+    if type(connection.disconnect) == "function" then pcall(connection.disconnect, connection) end
     return nil, format_adapter_name(adapter_name) .. " cannot load existing sessions"
   end
 
@@ -212,13 +217,13 @@ local function fetch_sessions(adapter_name, repo_root)
       end)
     end)
     if not ok_list then
-      pcall(connection.disconnect, connection)
+      if type(connection.disconnect) == "function" then pcall(connection.disconnect, connection) end
       return nil, listed
     end
     sessions = listed or {}
   end
 
-  pcall(connection.disconnect, connection)
+  if type(connection.disconnect) == "function" then pcall(connection.disconnect, connection) end
 
   return {
     supports_list = supports_list,
@@ -418,15 +423,73 @@ local function normalize_error(err, fallback)
 end
 
 local function disconnect_connection(connection)
-  if connection and connection._state and connection._state.handle then pcall(connection.disconnect, connection) end
+  if type(connection) == "table" and type(connection.disconnect) == "function" then pcall(connection.disconnect, connection) end
+end
+
+local function acp_contract_error(connection)
+  if type(connection) ~= "table" then return "CodeCompanion ACP connection is unavailable" end
+  if type(connection.METHODS) ~= "table" then return "CodeCompanion ACP methods are unavailable" end
+  if type(connection.methods) ~= "table" or type(connection.methods.encode) ~= "function" then
+    return "CodeCompanion ACP message encoder is unavailable"
+  end
+  if type(connection.write_message) ~= "function" then return "CodeCompanion ACP writer is unavailable" end
+  if type(connection.pending_responses) ~= "table" then return "CodeCompanion ACP response queue is unavailable" end
+  if type(connection._state) ~= "table" or not connection._state.id_gen then
+    return "CodeCompanion ACP request ID generator is unavailable"
+  end
+  if type(connection.adapter_modified) ~= "table" then return "CodeCompanion ACP adapter state is unavailable" end
+
+  connection.adapter_modified.defaults = connection.adapter_modified.defaults or {}
+
+  return nil
 end
 
 local function send_rpc_request_async(connection, method, params, callback)
-  local jsonrpc = require("codecompanion.utils.jsonrpc")
-  local id = connection._state.id_gen:next()
-  local request = jsonrpc.request(id, method, params)
+  local contract_err = acp_contract_error(connection)
+  if contract_err then
+    vim.schedule(function()
+      callback(nil, contract_err)
+    end)
+    return
+  end
+  if type(method) ~= "string" then
+    vim.schedule(function()
+      callback(nil, "CodeCompanion ACP method is unavailable")
+    end)
+    return
+  end
 
-  if not connection:write_message(connection.methods.encode(request) .. "\n") then
+  local ok_jsonrpc, jsonrpc = pcall(require, "codecompanion.utils.jsonrpc")
+  if not ok_jsonrpc then
+    vim.schedule(function()
+      callback(nil, "CodeCompanion JSON-RPC helpers are unavailable")
+    end)
+    return
+  end
+
+  local ok_id, id = pcall(function()
+    return connection._state.id_gen:next()
+  end)
+  if not ok_id then
+    vim.schedule(function()
+      callback(nil, "Failed to allocate ACP request ID")
+    end)
+    return
+  end
+
+  local request = jsonrpc.request(id, method, params)
+  local ok_encoded, encoded = pcall(connection.methods.encode, request)
+  if not ok_encoded then
+    vim.schedule(function()
+      callback(nil, "Failed to encode ACP request: " .. method)
+    end)
+    return
+  end
+
+  local ok_write, written = pcall(function()
+    return connection:write_message(encoded .. "\n")
+  end)
+  if not ok_write or not written then
     vim.schedule(function()
       callback(nil, "Failed to send ACP request: " .. method)
     end)
@@ -435,7 +498,7 @@ local function send_rpc_request_async(connection, method, params, callback)
 
   local timer = vim.uv.new_timer()
   local start_time = vim.uv.hrtime()
-  local timeout_ms = (connection.adapter_modified.defaults.timeout or ACP_TIMEOUT_MS)
+  local timeout_ms = connection.adapter_modified.defaults.timeout or ACP_TIMEOUT_MS
   local done = false
 
   local function finish(result, err)
@@ -482,6 +545,12 @@ local function register_disconnect_autocmd(connection)
 end
 
 local function authenticate_connection_async(connection, callback)
+  local contract_err = acp_contract_error(connection)
+  if contract_err then
+    callback(false, contract_err)
+    return
+  end
+
   if
     not connection._authenticated
     and connection.adapter_modified
@@ -542,7 +611,14 @@ local function connect_and_authenticate_async(adapter_name, repo_root, callback)
     return
   end
 
-  local connection = require("codecompanion.acp").new { adapter = adapter }
+  local ok_connection, connection = pcall(function()
+    return require("codecompanion.acp").new { adapter = adapter }
+  end)
+  if not ok_connection then
+    callback(nil, normalize_error(connection, "Could not create ACP connection"))
+    return
+  end
+
   local ok_start, started = pcall(function()
     return with_cwd(repo_root, function()
       return connection:start_agent_process()
@@ -552,6 +628,13 @@ local function connect_and_authenticate_async(adapter_name, repo_root, callback)
   if not ok_start or not started then
     disconnect_connection(connection)
     callback(nil, normalize_error(started, "Failed to start ACP process"))
+    return
+  end
+
+  local contract_err = acp_contract_error(connection)
+  if contract_err then
+    disconnect_connection(connection)
+    callback(nil, contract_err)
     return
   end
 
@@ -579,6 +662,12 @@ local function connect_and_authenticate_async(adapter_name, repo_root, callback)
 end
 
 local function load_session_async(connection, repo_root, session_id, callback)
+  local contract_err = acp_contract_error(connection)
+  if contract_err then
+    callback(nil, contract_err)
+    return
+  end
+
   local config = require("codecompanion.config")
   local updates = {}
   local session_args = {
@@ -586,7 +675,12 @@ local function load_session_async(connection, repo_root, session_id, callback)
     mcpServers = connection.adapter_modified.defaults.mcpServers,
   }
 
-  if connection.adapter_modified.defaults.mcpServers == "inherit_from_config" and config.mcp.opts.acp_enabled then
+  if
+    connection.adapter_modified.defaults.mcpServers == "inherit_from_config"
+    and config.mcp
+    and config.mcp.opts
+    and config.mcp.opts.acp_enabled
+  then
     session_args.mcpServers = require("codecompanion.mcp").transform_to_acp()
   end
 
@@ -625,9 +719,17 @@ local function create_restored_chat(codecompanion, binding, connection, updates)
 
   chat.acp_connection = connection
   chat:update_metadata()
-  require("codecompanion.interactions.shared.watch").enable()
-  require("codecompanion.interactions.chat.acp.commands").link_buffer_to_session(chat.bufnr, connection.session_id)
-  require("codecompanion.interactions.chat.acp.render").restore_session(chat, updates)
+  local watch = require("codecompanion.interactions.shared.watch")
+  local commands = require("codecompanion.interactions.chat.acp.commands")
+  local render = require("codecompanion.interactions.chat.acp.render")
+
+  if type(watch.enable) ~= "function" then error("CodeCompanion watch API is unavailable") end
+  if type(commands.link_buffer_to_session) ~= "function" then error("CodeCompanion ACP command API is unavailable") end
+  if type(render.restore_session) ~= "function" then error("CodeCompanion ACP render API is unavailable") end
+
+  watch.enable()
+  commands.link_buffer_to_session(chat.bufnr, connection.session_id)
+  render.restore_session(chat, updates)
 
   if binding.title and binding.title ~= "" then chat:set_title(binding.title) end
 

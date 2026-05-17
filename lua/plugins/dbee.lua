@@ -5,7 +5,7 @@
 ---@type LazySpec
 return {
   {
-    dir = "/Users/naveenkanuri/Documents/nvim-dbee",
+    "naveenkanuri/nvim-dbee",
     dependencies = {
       "MunifTanjim/nui.nvim",
       "folke/snacks.nvim",

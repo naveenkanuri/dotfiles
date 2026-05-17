@@ -2,14 +2,6 @@
 -- This is just pure lua so anything that doesn't
 -- fit in the normal config locations above can go here
 
--- Suppress noisy "[LSP] Client not attached to buffer" warnings
--- from semantic_tokens when DAP UI buffers are opened
-local original_notify = vim.notify
-vim.notify = function(msg, level, opts)
-  if type(msg) == "string" and msg:match "%[LSP%] Client with id %d+ not attached to buffer" then return end
-  original_notify(msg, level, opts)
-end
-
 -- Enhanced Mark Persistence for Large Codebases
 -- Increase shada limits to keep marks across 1000 files (default is only 100)
 vim.opt.shada = {
@@ -20,9 +12,8 @@ vim.opt.shada = {
   "h", -- Disable hlsearch on start
 }
 
--- Performance optimization for large files (YAML, logs, XML)
--- Files over 1.5MB will disable syntax highlighting and other expensive features
-vim.g.bigfile_size = 1024 * 1024 * 1.5 -- 1.5 MB
+local bigfile_size = vim.g.bigfile_size or 1536 * 1024
+vim.g.bigfile_size = bigfile_size
 
 local bigfile_group = vim.api.nvim_create_augroup("bigfile", { clear = true })
 
@@ -44,9 +35,10 @@ local function apply_bigfile_opts(bufnr, size)
 
   -- Buffer-local options.
   vim.bo[bufnr].syntax = "OFF"
-  vim.bo[bufnr].filetype = "bigfile"
   vim.bo[bufnr].swapfile = false
   vim.bo[bufnr].undolevels = -1
+
+  if vim.treesitter and vim.treesitter.stop then pcall(vim.treesitter.stop, bufnr) end
 
   -- Window-local options for all visible windows showing this buffer.
   for _, winid in ipairs(vim.fn.win_findbuf(bufnr)) do
@@ -74,7 +66,7 @@ vim.api.nvim_create_autocmd("BufReadPre", {
 
     -- getfsize returns -2 for directories and -1 for missing files.
     if size == -2 or size == -1 then return end
-    if size <= vim.g.bigfile_size then return end
+    if size <= bigfile_size then return end
 
     vim.schedule(function() apply_bigfile_opts(bufnr, size) end)
   end,
@@ -99,4 +91,16 @@ vim.api.nvim_create_autocmd("LspAttach", {
     if client_id then vim.lsp.buf_detach_client(args.buf, client_id) end
   end,
   desc = "Detach LSP from bigfile buffers only",
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+  group = vim.api.nvim_create_augroup("dap_semantic_tokens", { clear = true }),
+  pattern = { "dapui_*", "dap-repl" },
+  callback = function(args)
+    if not (vim.lsp.semantic_tokens and vim.lsp.semantic_tokens.stop) then return end
+    for _, client in ipairs(vim.lsp.get_clients { bufnr = args.buf }) do
+      pcall(vim.lsp.semantic_tokens.stop, args.buf, client.id)
+    end
+  end,
+  desc = "Stop semantic tokens in DAP UI buffers",
 })
