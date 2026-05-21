@@ -17,7 +17,11 @@ return {
         end,
       },
     },
-    build = function() require("dbee").install() end,
+    -- Force `go build` from local source instead of downloading the upstream
+    -- v0.1.9 release tarball (which would overwrite the locally-built binary
+    -- containing the v1.4/v1.5 fork commits). Plain install() uses
+    -- wget/curl → kndndrj/nvim-dbee/releases/.../v0.1.9.
+    build = function() require("dbee").install("go") end,
     cmd = { "Dbee" },
     keys = {
       { "<leader>ee", "<cmd>Dbee toggle<cr>", desc = "Toggle Dbee" },
