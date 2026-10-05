@@ -104,3 +104,82 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
   desc = "Stop semantic tokens in DAP UI buffers",
 })
+
+-- Make `gd` follow the markdown link under the cursor. Resolves the target
+-- relative to the current file, jumps to a `#heading` anchor when present, and
+-- opens http(s) links externally. Falls back to LSP definition off a link.
+local function markdown_link_target()
+  local line = vim.api.nvim_get_current_line()
+  local col = vim.api.nvim_win_get_cursor(0)[2] + 1 -- 1-indexed
+  -- inline links: [text](target)  and bare wiki links: [[target]]
+  for _, pat in ipairs { "%[[^%]]-%]%((%S-)%)", "%[%[([^%]]-)%]%]" } do
+    local s, e, target = 1
+    while true do
+      s, e, target = line:find(pat, e and e + 1 or 1)
+      if not s then break end
+      if col >= s and col <= e then
+        return (target:gsub('%s+".*$', "")) -- drop optional (path "title")
+      end
+    end
+  end
+  return nil
+end
+
+local function follow_markdown_link()
+  local target = markdown_link_target()
+  if not target then
+    return vim.lsp.buf.definition() -- not on a link: normal go-to-definition
+  end
+  if target:match "^%a[%w+.-]*://" or target:match "^mailto:" then
+    return vim.ui.open(target) -- external URL
+  end
+  local path, anchor = target:match "^([^#]*)#?(.*)$"
+  if path == "" then -- pure in-file anchor: [x](#heading)
+    path = vim.fn.expand "%:p"
+  elseif not path:match "^/" then -- resolve relative to current file's dir
+    path = vim.fn.expand "%:p:h" .. "/" .. path
+  end
+  if vim.fn.filereadable(path) == 0 then
+    vim.notify("markdown gd: file not found: " .. path, vim.log.levels.WARN)
+    return
+  end
+  vim.cmd.edit(vim.fn.fnameescape(path))
+  if anchor ~= "" then
+    -- jump to the matching ATX heading (slug match, punctuation-insensitive)
+    local want = anchor:gsub("%-", "[ %%-]"):lower()
+    for i, l in ipairs(vim.api.nvim_buf_get_lines(0, 0, -1, false)) do
+      local h = l:match "^#+%s+(.*)$"
+      if h and h:lower():gsub("[^%w ]", ""):gsub("%s+", "-"):match("^" .. want) then
+        vim.api.nvim_win_set_cursor(0, { i, 0 })
+        break
+      end
+    end
+  end
+end
+
+local markdown_gd_group = vim.api.nvim_create_augroup("markdown_link_gd", { clear = true })
+local function set_markdown_gd(buf)
+  local ft = vim.bo[buf].filetype
+  if ft ~= "markdown" and ft ~= "markdown.mdx" then return end
+  vim.keymap.set(
+    "n",
+    "gd",
+    follow_markdown_link,
+    { buffer = buf, desc = "Follow markdown link / go to definition" }
+  )
+end
+
+-- Set on FileType (no-LSP case) AND on LspAttach. LspAttach fires ~1s later
+-- when marksman connects; AstroLSP remaps buffer-local `gd` to LSP definition
+-- there, so we must re-assert ours afterward or it gets clobbered.
+vim.api.nvim_create_autocmd("FileType", {
+  group = markdown_gd_group,
+  pattern = { "markdown", "markdown.mdx" },
+  callback = function(args) set_markdown_gd(args.buf) end,
+  desc = "gd follows markdown links",
+})
+vim.api.nvim_create_autocmd("LspAttach", {
+  group = markdown_gd_group,
+  callback = function(args) vim.schedule(function() set_markdown_gd(args.buf) end) end,
+  desc = "Re-assert markdown gd after LSP attach",
+})
