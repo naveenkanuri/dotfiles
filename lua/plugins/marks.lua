@@ -39,7 +39,7 @@ return {
         -- Bookmarks (optional - if you want to use them)
         set_bookmark0 = "mb",
         delete_bookmark = "dmb",
-      }
+      },
     },
     config = function(_, opts)
       require("marks").setup(opts)
@@ -47,7 +47,7 @@ return {
       -- Register with which-key for better discoverability (new spec)
       local present, wk = pcall(require, "which-key")
       if present then
-        wk.add({
+        wk.add {
           -- Mark navigation commands
           { "m,", desc = "Next mark" },
           { "m.", desc = "Previous mark" },
@@ -59,7 +59,7 @@ return {
           { "dm<space>", desc = "Delete all marks in buffer" },
           { "dm-", desc = "Delete marks on line" },
           { "dmb", desc = "Delete bookmark" },
-        })
+        }
       end
     end,
   },

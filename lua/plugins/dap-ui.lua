@@ -34,13 +34,13 @@ return {
       mappings = {
         n = {
           ["<Leader>dh"] = {
-            function()
-              require("dapui").eval(nil, { enter = true, width = math.floor(vim.o.columns * 0.4) })
-            end,
+            function() require("dapui").eval(nil, { enter = true, width = math.floor(vim.o.columns * 0.4) }) end,
             desc = "Debugger Hover",
           },
           ["<Leader>dw"] = {
-            function() require("dapui").float_element("watches", { width = math.floor(vim.o.columns * 0.4), enter = true }) end,
+            function()
+              require("dapui").float_element("watches", { width = math.floor(vim.o.columns * 0.4), enter = true })
+            end,
             desc = "Watches (float)",
           },
           ["<Leader>dk"] = {

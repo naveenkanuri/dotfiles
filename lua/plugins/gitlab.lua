@@ -18,14 +18,14 @@ return {
       require("gitlab.server").build(true) -- Build the Go binary for API calls
     end,
     config = function()
-      require("gitlab").setup({
+      require("gitlab").setup {
         -- GitLab URL is set via GITLAB_URL environment variable
         -- GITLAB_URL="https://orahub.oci.oraclecorp.com/"
 
         -- Debugging (set to false when working properly)
         debug = {
           go_request = false,
-          go_response = false
+          go_response = false,
         },
 
         -- Discussion tree settings
@@ -41,7 +41,7 @@ return {
           delete_unmodified_lines = true, -- Clean diff view
           add_old_file_on_create = true,
         },
-      })
+      }
 
       -- Optional: Set up autocommands for MR files
       vim.api.nvim_create_autocmd("FileType", {
@@ -65,14 +65,23 @@ return {
 
       -- Comments (works in visual mode too)
       { "<leader>glc", ":lua require('gitlab').create_comment()<cr>", desc = "Create comment", mode = { "n", "v" } },
-      { "<leader>glC", ":lua require('gitlab').create_multiline_comment()<cr>", desc = "Create multiline comment", mode = "v" },
+      {
+        "<leader>glC",
+        ":lua require('gitlab').create_multiline_comment()<cr>",
+        desc = "Create multiline comment",
+        mode = "v",
+      },
       { "<leader>gln", ":lua require('gitlab').create_note()<cr>", desc = "Create MR note" },
 
       -- Navigation
       { "<leader>glb", ":lua require('gitlab').choose_merge_request()<cr>", desc = "Choose MR to review" },
       { "<leader>glo", ":lua require('gitlab').open_in_browser()<cr>", desc = "Open in browser" },
       { "]g", ":lua require('gitlab').move_to_discussion_tree_from_diagnostic()<cr>", desc = "Next GitLab discussion" },
-      { "[g", ":lua require('gitlab').move_to_discussion_tree_from_diagnostic('prev')<cr>", desc = "Prev GitLab discussion" },
+      {
+        "[g",
+        ":lua require('gitlab').move_to_discussion_tree_from_diagnostic('prev')<cr>",
+        desc = "Prev GitLab discussion",
+      },
 
       -- MR Management
       { "<leader>glm", ":lua require('gitlab').create_mr()<cr>", desc = "Create new MR" },

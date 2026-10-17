@@ -161,12 +161,7 @@ local markdown_gd_group = vim.api.nvim_create_augroup("markdown_link_gd", { clea
 local function set_markdown_gd(buf)
   local ft = vim.bo[buf].filetype
   if ft ~= "markdown" and ft ~= "markdown.mdx" then return end
-  vim.keymap.set(
-    "n",
-    "gd",
-    follow_markdown_link,
-    { buffer = buf, desc = "Follow markdown link / go to definition" }
-  )
+  vim.keymap.set("n", "gd", follow_markdown_link, { buffer = buf, desc = "Follow markdown link / go to definition" })
 end
 
 -- Set on FileType (no-LSP case) AND on LspAttach. LspAttach fires ~1s later
@@ -180,6 +175,8 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 vim.api.nvim_create_autocmd("LspAttach", {
   group = markdown_gd_group,
-  callback = function(args) vim.schedule(function() set_markdown_gd(args.buf) end) end,
+  callback = function(args)
+    vim.schedule(function() set_markdown_gd(args.buf) end)
+  end,
   desc = "Re-assert markdown gd after LSP attach",
 })
