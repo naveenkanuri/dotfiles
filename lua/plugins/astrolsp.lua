@@ -16,6 +16,20 @@ return {
       disabled = { "golangci_lint_ls" },
       timeout_ms = 1000,
     },
+    config = {
+      clangd = {
+        cmd = {
+          "clangd",
+          "--background-index",
+          -- Ask Xcode's clang for its system headers; Unreal's compile_commands.json names it as the compiler
+          "--query-driver=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang*",
+          -- Auto-inserted includes break Unreal's include-what-you-use conventions
+          "--header-insertion=never",
+          -- Cap indexing threads so Unreal's huge headers don't starve the editor
+          "-j=4",
+        },
+      },
+    },
     mappings = {
       n = {
         gl = { function() vim.diagnostic.open_float() end, desc = "Hover diagnostics" },

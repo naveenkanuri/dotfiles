@@ -29,7 +29,8 @@ return {
     opts = {
       excluded_lsp_clients = {
         "rust_analyzer", -- Rust needs persistent LSP for indexing
-        "gopls",         -- Go is your primary language, keep it alive
+        "gopls", -- Go is your primary language, keep it alive
+        "clangd", -- Unreal preambles take ~20s to rebuild; focus switches to the editor are constant
       },
     },
   },
