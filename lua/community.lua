@@ -19,6 +19,35 @@ return {
   { import = "astrocommunity.pack.zig" },
   { import = "astrocommunity.pack.python" },
 
+  -- The packs above declare `treesitter.ensure_installed` as plain tables, and lazy.nvim
+  -- replaces (not concatenates) lists when merging plain-table opts, so each pack clobbers
+  -- the previous one's parsers. Re-add every pack's list additively so all are installed.
+  -- TODO: this mirrors the packs' own lists; update it when adding or removing a pack above.
+  {
+    "AstroNvim/astrocore",
+    opts = function(_, opts)
+      opts.treesitter = opts.treesitter or {}
+      opts.treesitter.ensure_installed = require("astrocore").list_insert_unique(opts.treesitter.ensure_installed, {
+        "rust",
+        "lua",
+        "luap",
+        "yaml",
+        "markdown",
+        "markdown_inline",
+        "angular",
+        "cpp",
+        "c",
+        "objc",
+        "cuda",
+        "proto",
+        "bash",
+        "java",
+        "helm",
+        "zig",
+      })
+    end,
+  },
+
   -- LSP: Reduce to essential plugins only
   { import = "astrocommunity.lsp.actions-preview-nvim", enabled = true },
   { import = "astrocommunity.lsp.garbage-day-nvim", enabled = true }, -- This helps with memory
