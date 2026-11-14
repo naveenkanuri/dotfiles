@@ -1,0 +1,16 @@
+#!/bin/sh
+# clangd wrapper for arduino-language-server: persist clangd's background index.
+# The LS compiles into a fresh temp dir each session and clangd stores its index
+# in <that dir>/.cache, so the Arduino core is re-indexed on every start.
+# Point .cache at a persistent dir instead. Real clangd path: $ARDUINO_CLANGD.
+for arg in "$@"; do
+  case "$arg" in
+    --compile-commands-dir=*)
+      dir="${arg#--compile-commands-dir=}"
+      cache="${XDG_CACHE_HOME:-$HOME/.cache}/arduino-clangd"
+      mkdir -p "$cache" "$dir"
+      [ -e "$dir/.cache" ] || ln -s "$cache" "$dir/.cache"
+      ;;
+  esac
+done
+exec "${ARDUINO_CLANGD:-clangd}" "$@"
