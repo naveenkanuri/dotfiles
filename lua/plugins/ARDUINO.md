@@ -110,5 +110,7 @@ Settings:
 - `lua/plugins/arduino.lua`: LSP config, keymaps, monitor, compile DB for board-package sources.
 - `bin/arduino-clangd`: clangd wrapper; keeps clangd's index in `~/.cache/arduino-clangd` (startup indexing ~25s -> <1s).
 - Go-to-definition into core files uses the regular clangd with a generated compile DB
-  (`~/.cache/nvim/arduino-cdb/`, symlinked into the board package dir). Those files open read-only.
+  (`~/.cache/nvim/arduino-cdb/`, symlinked into the board package dir), plus a `.clangd` there that
+  pre-includes `Arduino.h` for headers (vendor headers like `pins_arduino.h` aren't self-contained).
+  Those files open read-only.
 - Stale index or odd diagnostics: `rm -rf ~/.cache/arduino-clangd ~/.cache/nvim/arduino-cdb`, restart Neovim.
